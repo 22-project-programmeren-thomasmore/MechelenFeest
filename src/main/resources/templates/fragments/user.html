@@ -21,7 +21,7 @@
 <div sec:authorize="isAuthenticated()" th:fragment="logoutmenu">
     <div class="nav-link text-navtext navtext ">
         <form th:action="@{/user/logout}" method="post">
-            <button class="signup-button"  th:text="#{login.logout}">Logout</button>
+            <button class="signup-button"  style="color: #FFD31C;" th:text="#{login.logout}">Logout</button>
         </form>
     </div>
 </div>
