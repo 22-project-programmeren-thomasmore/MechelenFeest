@@ -8,20 +8,20 @@
 <div sec:authorize="!isAuthenticated()" th:fragment="loginmenu">
 
     <li>
-        <a class="nav-link text-navtext navtext mx-3" th:href="|@{/login(lang = #{lang.source})}|">
+        <a class="nav-link text-navtext navtext" th:href="|@{/login(lang = #{lang.source})}|">
             <span class="login-button" role="button" th:text="#{login.login}">Login</span>
         </a>
     </li>
     <li>
-        <a class="nav-link text-navtext navtext mx-3" th:href="|@{/signup(lang = #{lang.source})}|">
+        <a class="nav-link text-navtext navtext" th:href="|@{/signup(lang = #{lang.source})}|">
             <span class="signup-button" th:text="#{login.signup}">Signup</span>
         </a>
     </li>
 </div>
 <div sec:authorize="isAuthenticated()" th:fragment="logoutmenu">
-    <div class="nav-link text-navtext navtext mx-3">
+    <div class="nav-link text-navtext navtext ">
         <form th:action="@{/user/logout}" method="post">
-            <button class="signup-button" type="submit" th:text="#{login.logout}">Logout</button>
+            <button class="signup-button"  th:text="#{login.logout}">Logout</button>
         </form>
     </div>
 </div>
