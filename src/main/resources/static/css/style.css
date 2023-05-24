@@ -43,6 +43,7 @@ svg {
 }
 
 .navtext1 {
+    font-weight: bold;
     position: relative;
     color: #253679;
     padding: 0.4em 1em;
