@@ -22,13 +22,24 @@
 <div class="container mb-4 mt-4">
     <div class="border col-md-6 offset-md-3 p-4">
         <form th:action="@{/admin/festivalcreator}" method="post">
+            <div class="oneinput" th:if="${foutief}">
+                <p class="btn mt-2" style="color: #610000">gelieven alle velden in te vullen</p>
+            </div>
             <div class="oneinput">
                 <label for="festivalName" class="form-label">Name: </label>
                 <input type="text" id="festivalName" class="form-control mb-2" th:field="*{festival.festivalName}">
             </div>
             <div class="oneinput">
-                <label for="festivalDate" class="form-label">Date: </label>
-                <input type="text" id="festivalDate" class="form-control mb-2" th:field="*{festival.festivalDate}">
+                <label for="startDate" class="form-label">StartDate: </label>
+                <input type="date" id="startDate" class="form-control mb-2" th:field="*{festival.startDate}" min="2023-01-01">
+            </div>
+            <div class="oneinput">
+                <label for="endDate" class="form-label">EndDate: </label>
+                <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}" min="2023-01-01">
+            </div>
+            <div class="oneinput">
+                <label for="maxCapacity" class="form-label">Capacity: </label>
+                <input type="number" id="maxCapacity" class="form-control mb-2" th:field="*{festival.maxCapacity}">
             </div>
             <div class="oneinput">
                 <label for="festivalLink" class="form-label">Link: </label>
@@ -45,7 +56,7 @@
             <div class="oneinput">
                 <input type="submit" value="create" class="btn btn-primary mt-2">
             </div>
-        </form>
+      </form>
     </div>
 </div>
 
