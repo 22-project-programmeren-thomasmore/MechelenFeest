@@ -35,11 +35,11 @@
             </div>
             <div class="oneinput">
                 <label for="startDate" class="form-label">StartDate: </label>
-                <input type="date" id="startDate" class="form-control mb-2" th:field="*{festival.startDate}">
+                <input type="date" id="startDate" class="form-control mb-2" th:field="*{festival.startDate}" min="2023-01-01">
             </div>
             <div class="oneinput">
                 <label for="endDate" class="form-label">EndDate: </label>
-                <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}">
+                <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}" min="2023-01-01">
             </div>
             <div class="oneinput">
                 <label for="maxCapacity" class="form-label">Capacity: </label>
