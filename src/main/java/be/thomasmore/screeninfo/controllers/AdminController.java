@@ -57,8 +57,20 @@ public class AdminController {
 
     @PostMapping("/festivalcreator")
     public String addFestivalPost(Model model, @Valid Festival festival) {
+        boolean valid = true;
+        if(festival.getFestivalName() == null || festival.getFestivalName().trim() == ""
+                || festival.getFestivalImage() == null || festival.getFestivalImage().trim() == ""
+                || festival.getMaxCapacity() == null ||festival.getMaxCapacity() <= 0){
+            valid = false;
+        }
+
         festival.setPopulation(0);
-        festivalRepository.save(festival);
-        return "redirect:/festivallijst";
+
+        if(valid){
+            festivalRepository.save(festival);
+            return "redirect:/festivallijst";
+        }
+        model.addAttribute("festival", festival);
+        return "admin/festivalcreator";
     }
 }
