@@ -78,6 +78,7 @@ public class AdminController {
             return "redirect:/festivallijst";
         }
         model.addAttribute("festival", festival);
+        model.addAttribute("foutief", true);
         return "admin/festivalcreator";
     }
 }
