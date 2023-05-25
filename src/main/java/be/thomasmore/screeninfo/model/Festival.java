@@ -28,6 +28,7 @@ public class Festival {
     public Festival(){
         startDate = new Date(123,00,01);
         endDate = new Date(123,00,01);
+        festivalType = "Music";
     }
 
     public Integer getId() {

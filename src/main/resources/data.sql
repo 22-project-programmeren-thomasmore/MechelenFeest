@@ -32,7 +32,7 @@ VALUES (
 
 
 
-INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FESTIVAL_IMAGE, FESTIVAL_LINK, FESTIVAL_NAME, MAX_CAPACITY, POPULATION)
+INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FESTIVAL_IMAGE, FESTIVAL_LINK, FESTIVAL_NAME,FESTIVAL_TYPE, MAX_CAPACITY, POPULATION)
                                 VALUES
                                     (1, '#f28629', '2023-06-23', '2023-06-24', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/de-koer-festival/','De Koer','Music',10000,0),
                                     (2, '#6FB746', '2023-06-29', '2023-08-17', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/parkpop/','Parkpop','Culture',1000,0),

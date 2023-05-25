@@ -32,11 +32,10 @@ public class FestivalController {
         Iterable<Festival> festivals;
 
         if (keyword == null && festivalType==null) {
-            festivals = festivalRepository.findAllByOrderByOnGoingDesc();
-        }else {
+            festivals = festivalRepository.findAllByOrderByStartDateAsc();
+        }else
             festivals = festivalRepository.findByQuery(keyword, festivalType);
 
-        List<Festival> festivals = festivalRepository.findAllByOrderByStartDateAsc();
         List<FestivalItem> festivalItems = new ArrayList<>(); // om een makelijker manier te hebben voor html scripts
 
         for (Festival festival:festivals) {
@@ -46,12 +45,9 @@ public class FestivalController {
             }
         }
 
-        model.addAttribute("festivals", festivalItems);
-        }
-
         model.addAttribute("keyword", keyword);
         model.addAttribute("festivalType",festivalType);
-        model.addAttribute("festivals", festivals);
+        model.addAttribute("festivals", festivalItems);
 
         return "festivallijst";
     }
