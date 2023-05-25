@@ -45,6 +45,9 @@ public class AdminController {
 
     @PostMapping({"/festivaleditor", "/festivaleditor/{id}"})
     public String editFestivalPost(@Valid Festival festival){
+        if(festival.getEndDate().before(festival.getStartDate())){
+            festival.setEndDate(festival.getStartDate());
+        }
         festivalRepository.save(festival);
         return "redirect:/festivallijst";
     }
@@ -62,6 +65,10 @@ public class AdminController {
                 || festival.getFestivalImage() == null || festival.getFestivalImage().trim() == ""
                 || festival.getMaxCapacity() == null ||festival.getMaxCapacity() <= 0){
             valid = false;
+        }
+
+        if(festival.getEndDate().before(festival.getStartDate())){
+            festival.setEndDate(festival.getStartDate());
         }
 
         festival.setPopulation(0);
