@@ -23,6 +23,8 @@ public class Festival {
     private Integer maxCapacity; // dit is voor de barometer
     private Integer population; // dit is voor hoeveel man er momenteel is
 
+    private String festivalType;
+
     public Festival(){
         startDate = new Date(123,00,01);
         endDate = new Date(123,00,01);
@@ -99,4 +101,14 @@ public class Festival {
     public void setPopulation(Integer population) {
         this.population = population;
     }
+
+    public String getFestivalType() {
+        return festivalType;
+    }
+
+    public void setFestivalType(String festivalType) {
+        this.festivalType = festivalType;
+    }
+
 }
+
