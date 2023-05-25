@@ -99,9 +99,9 @@ nav .nav-link:hover {
      transition: all .6s;
  }
 
- .events {
-     display: inline-block;
- }
+ /*.events {*/
+ /*    display: inline-block;*/
+ /*}*/
 
 .festival {
     position: relative;
@@ -127,31 +127,20 @@ nav .nav-link:hover {
 }
 
 .festival-date {
-    padding-bottom: 1.25em;
+    padding-bottom: 1em;
     color: #FFD31C;
-    font-size: 1.5em;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-}
-.festival:nth-child(4n+4) .festival-date {
-    font-size: 1.1em;
-    color: #FFD31C;
-    font-weight: 700;
-    letter-spacing: 0;
+    font-size: 1em;
+    font-weight: 650;
+    letter-spacing: 0em;
 }
 
 
 .festival-name {
-    font-size: 2.3em;
-    text-transform: lowercase;
-    letter-spacing: 0.08em;
-}
-
-.festival:nth-child(4n+4) .festival-name {
-    font-size: 1.8em;
+    font-size: 1.65em;
     text-transform: lowercase;
     letter-spacing: 0;
 }
+
 
 .festival-cover{
     float: right;
@@ -192,7 +181,7 @@ nav .nav-link:hover {
     right: 40px;
     bottom: 150px;
 
-    font-size: 25px;
+    font-size: 20px;
 
     padding: 2px 30px;
     border-width: 3px;
@@ -292,6 +281,58 @@ nav .nav-link:hover {
     text-align: center;
     font-size: 3vw;
 }
+
+.filterbutton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #53C0D7;
+    padding: 2px;
+}
+
+.filterbutton button {
+    /*margin-left: 30px;*/
+}
+
+/*.logoMain {*/
+/*    display: flex;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    background: #53C0D7;*/
+/*    padding: 100px;*/
+/*}*/
+
+/*.geleball{*/
+/*    display: flex;*/
+/*    position: absolute;*/
+/*    background: #FFD31C;*/
+/*    border-radius: 50%;*/
+/*    height: 150px;*/
+/*    width: 150px;*/
+/*    justify-content: center;*/
+/*    align-items: center;*/
+/*    z-index: 1;*/
+/*}*/
+
+/*.geleball p{*/
+/*    color: #253679;*/
+/*    font-size: 2.1em;*/
+/*    font-weight: bold;*/
+/*    letter-spacing: 0.06em;*/
+/*}*/
+
+
+
+
+/*-------------------------------------------------------------------------------------------------------*/
+/*   Footer Stijl */
+
+#footer{
+    display: flex;
+    flex-direction: column;
+}
+
+
 
 /*-------------------------------------------------------------------------------------------------------*/
 /*   Contact Pagina Stijl Start  */
@@ -397,7 +438,7 @@ nav .nav-link:hover {
 
 
 
-@media only screen and (max-width: 690px) {
+@media only screen and (max-width: 976px) {
 
     .events {
         display: grid;
@@ -408,8 +449,12 @@ nav .nav-link:hover {
         width: auto;
     }
 
-    .festival:nth-child(4n+4) .festival-moreinfo {
+    .festival-moreinfo {
         display: none;
+    }
+
+    .festival-active{
+        bottom: 75px;
     }
 }
 

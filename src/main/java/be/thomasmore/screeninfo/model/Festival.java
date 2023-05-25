@@ -21,6 +21,8 @@ public class Festival {
     private Integer population; // dit is voor hoeveel man er momenteel is
     private boolean onGoing; // om manueel te zeggen dat een event bezig is
 
+    private String festivalType;
+
     public Festival(){
 
     }
@@ -96,4 +98,14 @@ public class Festival {
     public void setOnGoing(boolean onGoing) {
         this.onGoing = onGoing;
     }
+
+    public String getFestivalType() {
+        return festivalType;
+    }
+
+    public void setFestivalType(String festivalType) {
+        this.festivalType = festivalType;
+    }
+
 }
+
