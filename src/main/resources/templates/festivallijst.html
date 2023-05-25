@@ -29,7 +29,7 @@
 
 
 
-        <a th:href="@{/festivaldetails}" class="festival-link" >
+        <a th:href="@{'/festivaltdetails/'+${festival.getId()}}" class="festival-link" >
             <figure th:style="|background-color: ${festival.getBackgroundColor()}; |" class="festival-cover">
                 <img th:src="@{|${festival.getFestivalImage()}|}"  width="484" height="600">
             </figure>

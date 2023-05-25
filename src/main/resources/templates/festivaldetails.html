@@ -18,22 +18,15 @@
 <body>
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
+  <div>
+    <h2 th:if="${festival}" th:text="|festival: ${festival.festivalName}|"></h2>
+    <p th:unless="${festival}"></p>
 
-<div class="row1">
-  <div class="row1content">
-    <div th:if="${festivals}">
-      </div>
+    <div th:if="${festival}">
+      <div class="info">Link : </div>
+      <div><a th:href="@{${festival.getFestivalLink()}}" th:text="${festival.getFestivalLink()}">klik hier</a></div><br>
+
     </div>
-<div>
-  <h2 th:if="${festivals}" th:text="|festival: ${festival.festivalName}|"></h2>
-  <p th:unless="${festivals}"></p>
-</div>
-
-<div th:if="${festivals}">
-  <div class="info">Link : </div>
-  <div><a th:href="@{${festivals.getFestivalLink()}}" th:text="${festivals.getFestivalLink()}">klik hier</a></div><br>
-
-</div>
   </div>
 
 

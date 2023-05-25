@@ -29,20 +29,8 @@ public class FestivalController {
     public String festivalDetails(Model model, @PathVariable(required = false) Integer id) {
         if (id==null) return "festivaldetails";
         Optional<Festival> optionalFestival = festivalRepository.findById(id);
-        Optional<Festival> optionalPrev = festivalRepository.findFirstByIdLessThanOrderByIdDesc(id);
-        Optional<Festival> optionalNext = festivalRepository.findFirstByIdGreaterThanOrderById(id);
         if (optionalFestival.isPresent()) {
-            model.addAttribute("festivals", optionalFestival.get());
-        }
-        if (optionalPrev.isPresent()) {
-            model.addAttribute("prev", optionalPrev.get().getId());
-        } else {
-            model.addAttribute("prev", festivalRepository.findFirstByOrderByIdDesc().get().getId());
-        }
-        if (optionalNext.isPresent()) {
-            model.addAttribute("next", optionalNext.get().getId());
-        } else {
-            model.addAttribute("next", festivalRepository.findFirstByOrderByIdAsc().get().getId());
+            model.addAttribute("festival", optionalFestival.get());
         }
         return "festivaldetails";
     }
