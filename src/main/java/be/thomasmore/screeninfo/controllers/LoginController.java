@@ -64,7 +64,6 @@ public class LoginController {
         VerificationToken token = new VerificationToken(user);
         verificationTokenRepository.save(token);
         emailService.sendVerificationEmail(user, token);
-        System.out.println("Confirmation Token: " + token.getToken());
         autologin(userName, password.trim());
         if (getUpdates)
             emailService.sendEmailWithAttachment(emailAddress, "Welkom", "Welkom bij de Mechelen Feest app");
