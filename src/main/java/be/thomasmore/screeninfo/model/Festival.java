@@ -24,7 +24,8 @@ public class Festival {
     private Integer population; // dit is voor hoeveel man er momenteel is
 
     public Festival(){
-
+        startDate = new Date(100,00,01);
+        endDate = new Date(100,00,01);
     }
 
     public Integer getId() {
