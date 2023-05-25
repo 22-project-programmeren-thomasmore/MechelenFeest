@@ -39,7 +39,7 @@ public class EmailService {
         message.setTo(user.getEmailAddress());
         message.setSubject("Reset Password");
         message.setText("To reset your password, please click here : "
-                +"http://localhost:8080/confirm-account/"+token.getToken());
+                +"http://localhost:8080/new-password/"+token.getToken());
         mailSender.send(message);
     }
 
