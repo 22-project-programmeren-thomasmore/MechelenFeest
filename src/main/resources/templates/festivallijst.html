@@ -30,26 +30,40 @@
 
     <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
         <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasExampleLabel">Filter</h5>
+            <h3 class="offcanvas-title" id="offcanvasExampleLabel">Filter</h3>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
         <div class="offcanvas-body">
             <form class="form-inline my-2 my-lg-0">
-                <label for="keyword" class="filtername">keyword</label>
-                <input type="text" id="keyword" name="keyword" th:value="${keyword}">
 
-<!--                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"><br>-->
-                <h3>Festival Type</h3>
-                <label for="typemusic" class="filtername">Music</label>
-                <input type="radio" id="typemusic" th:checked="${festivalType!=null && festivalType=='Music'}" value="Music" name="festivalType">
-                <label for="typesport" class="filtername">Sport</label>
-                <input type="radio" id="typesport" th:checked="${festivalType!=null && festivalType=='Sport'}" value="Sport" name="festivalType">
-                <label for="typeculture" class="filtername">Culture</label>
-                <input type="radio" id="typeculture" th:checked="${festivalType!=null && festivalType=='Culture'}" value="Culture" name="festivalType">
-                <label for="typetech" class="filtername">Technology</label>
-                <input type="radio" id="typetech" th:checked="${festivalType!=null && festivalType=='Technology'}" value="Technology" name="festivalType">
 
-                <button class="btn btn-outline-dark my-2 my-sm-0" type="submit">Search</button>
+                <div class="form-group mb-5">
+                    <label for="keyword" class="filtername"><h5>Keyword</h5></label>
+                    <input class="form-control mr-sm-2" type="text" id="keyword" name="keyword" th:value="${keyword}" placeholder="Search" aria-label="Search">
+                </div>
+
+                <h5>Festival Type</h5>
+                <div class="form-check">
+                    <label for="typemusic" class="form-check-label">Music</label>
+                    <input type="radio" id="typemusic" class="form-check-input" th:checked="${festivalType!=null && festivalType=='Music'}" value="Music" name="festivalType">
+                </div>
+
+                <div class="form-check">
+                    <label for="typesport" class="form-check-label">Sport</label>
+                    <input type="radio" id="typesport" class="form-check-input" th:checked="${festivalType!=null && festivalType=='Sport'}" value="Sport" name="festivalType">
+                </div>
+
+                <div class="form-check">
+                    <label for="typeculture" class="form-check-label">Culture</label>
+                    <input type="radio" id="typeculture" class="form-check-input" th:checked="${festivalType!=null && festivalType=='Culture'}" value="Culture" name="festivalType">
+                </div>
+
+                <div class="form-check mb-4">
+                    <label for="typetech" class="form-check-label">Technology</label>
+                    <input type="radio" id="typetech" class="form-check-input" th:checked="${festivalType!=null && festivalType=='Technology'}" value="Technology" name="festivalType">
+                </div>
+
+                <button class="btn btn-outline-dark  my-sm-0" type="submit">Search</button>
             </form>
         </div>
     </div>
