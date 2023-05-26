@@ -568,3 +568,7 @@ nav .nav-link:hover {
     margin-bottom: 20px;
 }
 
+.festival-row {
+    background-color: #FDD835;
+    padding: 20px;
+}

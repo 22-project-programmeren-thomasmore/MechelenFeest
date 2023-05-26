@@ -16,13 +16,16 @@
 
 </head>
 <body>
+
+
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
-<div class="container">
-  <div class="row">
-    <div class="col-md-12 text-center">
+
+    <div class="col-md-12 text-center festival-row">
       <div class="festival-name" th:if="${festival}" th:text="${festival.festivalName}|"></div>
 
+  <div class="row">
+    <div class="col-md-12 text-center">
       <div class="frame">
         <div class="row">
           <div class="col-md-6">
@@ -36,7 +39,7 @@
               <div th:if="${festival.isOnGoing()}" class="info">Is Live:
                 <p th:text="${festival.getBusyness()}">yes</p></div><br>
               <div id="map" style="width:350px;height:350px;background:grey"
-         class="map" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
+                   class="map" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
             </div>
           </div>
           <div class="col-md-6">
@@ -47,9 +50,6 @@
     </div>
   </div>
 </div>
-
-
-
 
 
 <div th:replace="~{/fragments/headerfooter :: footer}">Hier komt de footer</div>
