@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.security.Principal;
+import java.util.Optional;
 import java.sql.Date;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -51,5 +53,13 @@ public class FestivalController {
 
         return "festivallijst";
     }
-
+    @GetMapping({"/festivaldetails", "/festivaldetails/{id}"})
+    public String festivalDetails(Model model, @PathVariable(required = false) Integer id) {
+        if (id==null) return "festivaldetails";
+        Optional<Festival> optionalFestival = festivalRepository.findById(id);
+        if (optionalFestival.isPresent()) {
+            model.addAttribute("festival", optionalFestival.get());
+        }
+        return "festivaldetails";
+    }
 }
