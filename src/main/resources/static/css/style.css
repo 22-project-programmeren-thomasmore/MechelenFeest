@@ -89,11 +89,22 @@ nav .nav-link {
 
 }
 
-nav .nav-link:hover {
-    color:#253679;
-    font-weight: bold;
+nav .navtext {
 
+    --c:linear-gradient(#FFD31C 0 0);
+    padding-bottom: .15em;
+    background: var(--c), var(--c);
+    background-size: .3em .1em;
+    background-position:50% 100%;
+    background-repeat: no-repeat;
+    transition: .3s linear, background-size .3s .2s linear;
 }
+nav .navtext:hover {
+    color: #253679;
+    background-size: 40% .1em;
+    background-position: 10% 100%, 90% 100%;
+}
+
 
 .navbar-collapse{
  transition: all .5s;
