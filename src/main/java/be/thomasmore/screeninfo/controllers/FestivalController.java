@@ -58,7 +58,7 @@ public class FestivalController {
         if (id==null) return "festivaldetails";
         Optional<Festival> optionalFestival = festivalRepository.findById(id);
         if (optionalFestival.isPresent()) {
-            model.addAttribute("festival", optionalFestival.get());
+            model.addAttribute("festival",  new FestivalItem(optionalFestival.get()));
         }
         return "festivaldetails";
     }
