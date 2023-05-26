@@ -18,20 +18,53 @@
 <body>
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
-<div class="frame">
-  <div class="festival-name" th:if="${festival}" th:text="${festival.festivalName}|"></div>
-  <p th:unless="${festival}"></p>
 
-  <div th:if="${festival}">
-    <div class="info">Link:
-    <a th:href="@{${festival.getFestivalLink()}}" th:text="${festival.getFestivalLink()}">klik hier</a></div><br>
-    <div class="info">Datum:
-    <p th:text="${festival.getDate()}">0</p></div><br>
-    <div th:if="${festival.isOnGoing()}" class="info">Is Live:
-    <p th:text="${festival.getBusyness()}">yes</p></div><br>
-    <div id="map" style="width:350px;height:350px;background:grey"></div>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap Frame</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+</head>
+<body>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <div class="festival-name" th:if="${festival}" th:text="${festival.festivalName}|"></div>
+
+      <div class="frame">
+        <div class="row">
+          <div class="col-md-6">
+            <p th:unless="${festival}"></p>
+
+            <div th:if="${festival}">
+              <div>
+                <a th:href="@{${festival.getFestivalLink()}}" th:text="Link" target="_blank">klik hier</a></div><br>
+              <div class="info">Datum:
+                <p th:text="${festival.getDate()}">0</p></div><br>
+              <div th:if="${festival.isOnGoing()}" class="info">Is Live:
+                <p th:text="${festival.getBusyness()}">yes</p></div><br>
+              <div id="map" style="width:350px;height:350px;background:grey"></div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <img th:src="@{|${festival.getFestivalImage()}|}" alt="Image">
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
+</body>
+</html>
+
 
 
 

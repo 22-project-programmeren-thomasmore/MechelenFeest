@@ -553,3 +553,18 @@ nav .nav-link:hover {
     }
 
 }
+
+/*-------------------------------------------------------------------------------------------------------*/
+/*   Detail Pagina Stijl Start   */
+/*-------------------------------------------------------------------------------------------------------*/
+
+
+.frame {
+    border: 2px solid orange;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
