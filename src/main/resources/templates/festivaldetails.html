@@ -29,6 +29,7 @@
     <p th:text="${festival.getDate()}">0</p></div><br>
     <div th:if="${festival.isOnGoing()}" class="info">Is Live:
     <p th:text="${festival.getBusyness()}">yes</p></div><br>
+    <div id="map" style="width:350px;height:350px;background:grey"></div>
   </div>
 </div>
 
@@ -43,6 +44,19 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js" integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ" crossorigin="anonymous"></script>
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+
+<script>
+  function MapCreation() {
+    var mapOptions = {
+      center:new google.maps.LatLng(51.027853, 4.480014),
+      zoom: 15
+    }
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+  }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=MapCreation"></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=mMap"></script>
 
 </body>
 </html>
