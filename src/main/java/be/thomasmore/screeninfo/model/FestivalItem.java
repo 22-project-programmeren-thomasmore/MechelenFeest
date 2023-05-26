@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 public class FestivalItem {
+    public Integer id;
     private String festivalName;
     private String festivalImage;
     private String backgroundColor;
@@ -16,6 +17,7 @@ public class FestivalItem {
 
 
     public FestivalItem(Festival festival){
+        id = festival.getId();
         festivalName = festival.getFestivalName();
         festivalImage = festival.getFestivalImage();
         backgroundColor = festival.getBackgroundColor();
@@ -59,6 +61,13 @@ public class FestivalItem {
 
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getFestivalName() {
         return festivalName;
     }

@@ -25,8 +25,10 @@
   <div th:if="${festival}">
     <div class="info">Link:
     <a th:href="@{${festival.getFestivalLink()}}" th:text="${festival.getFestivalLink()}">klik hier</a></div><br>
-    <div class="info">Date:
-    <p th:text="${festival.getFestivalDate()}">0</p></div><br>
+    <div class="info">Begint op:
+    <p th:text="${festival.getStartDate()}">0</p></div><br>
+    <div class="info">Eindigt op:
+      <p th:text="${festival.getEndDate()}">0</p></div><br>
     <div class="info">Population:
     <p th:text="${festival.getPopulation()}">no</p></div><br>
   </div>
