@@ -43,8 +43,11 @@ public class AdminController {
         return "admin/festivaleditor";
     }
 
-    @PostMapping("/festivaleditor/{id}")
-    public String editFestivalPost(@Valid Festival festival, @PathVariable int id) {
+    @PostMapping({"/festivaleditor", "/festivaleditor/{id}"})
+    public String editFestivalPost(@Valid Festival festival){
+        if(festival.getEndDate().before(festival.getStartDate())){
+            festival.setEndDate(festival.getStartDate());
+        }
         festivalRepository.save(festival);
         return "redirect:/festivallijst";
     }
@@ -57,7 +60,25 @@ public class AdminController {
 
     @PostMapping("/festivalcreator")
     public String addFestivalPost(Model model, @Valid Festival festival) {
-        festivalRepository.save(festival);
-        return "redirect:/festivallijst";
+        boolean valid = true;
+        if(festival.getFestivalName() == null || festival.getFestivalName().trim() == ""
+                || festival.getFestivalImage() == null || festival.getFestivalImage().trim() == ""
+                || festival.getMaxCapacity() == null ||festival.getMaxCapacity() <= 0){
+            valid = false;
+        }
+
+        if(festival.getEndDate().before(festival.getStartDate())){
+            festival.setEndDate(festival.getStartDate());
+        }
+
+        festival.setPopulation(0);
+
+        if(valid){
+            festivalRepository.save(festival);
+            return "redirect:/festivallijst";
+        }
+        model.addAttribute("festival", festival);
+        model.addAttribute("foutief", true);
+        return "admin/festivalcreator";
     }
 }
