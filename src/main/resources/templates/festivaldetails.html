@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact</title>
+  <title>Festival Details</title>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}"  href="/css/style.css" />
@@ -19,16 +19,16 @@
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
 <div class="frame">
-  <div class="festival-name" th:if="${festival}" th:text="|Festival: ${festival.festivalName}|"></div>
+  <div class="festival-name" th:if="${festival}" th:text="${festival.festivalName}|"></div>
   <p th:unless="${festival}"></p>
 
   <div th:if="${festival}">
-    <div class="info">Link:</div>
-    <div><a th:href="@{${festival.getFestivalLink()}}" th:text="${festival.getFestivalLink()}">klik hier</a></div><br>
-    <div class="info">Date:</div>
-    <div><p th:text="${festival.getFestivalDate()}">0</p></div><br>
-    <div class="info">Population:</div>
-    <div><p th:text="${festival.getPopulation()}">no</p></div><br>
+    <div class="info">Link:
+    <a th:href="@{${festival.getFestivalLink()}}" th:text="${festival.getFestivalLink()}">klik hier</a></div><br>
+    <div class="info">Date:
+    <p th:text="${festival.getFestivalDate()}">0</p></div><br>
+    <div class="info">Population:
+    <p th:text="${festival.getPopulation()}">no</p></div><br>
   </div>
 </div>
 
