@@ -15,6 +15,10 @@ public class FestivalItem {
 
     private String busyness; // om op voorant te berekenen hoe druk he is
 
+    // voor positie op map
+    private float mapLat;
+    private float mapLng;
+
 
     public FestivalItem(Festival festival){
         id = festival.getId();
@@ -22,6 +26,9 @@ public class FestivalItem {
         festivalImage = festival.getFestivalImage();
         backgroundColor = festival.getBackgroundColor();
         festivalLink = festival.getFestivalLink();
+        mapLat = festival.getMapLat();
+        mapLng = festival.getMapLng();
+
 
         onGoing = Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()).after(festival.getStartDate());
 
@@ -122,6 +129,22 @@ public class FestivalItem {
 
     public void setBusyness(String busyness) {
         this.busyness = busyness;
+    }
+
+    public void setMapLat(float mapLat) {
+        this.mapLat = mapLat;
+    }
+
+    public void setMapLng(float mapLng) {
+        this.mapLng = mapLng;
+    }
+
+    public float getMapLat() {
+        return mapLat;
+    }
+
+    public float getMapLng() {
+        return mapLng;
     }
 
 }

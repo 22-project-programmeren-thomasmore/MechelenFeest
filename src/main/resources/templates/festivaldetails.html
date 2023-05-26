@@ -29,14 +29,10 @@
     <p th:text="${festival.getDate()}">0</p></div><br>
     <div th:if="${festival.isOnGoing()}" class="info">Is Live:
     <p th:text="${festival.getBusyness()}">yes</p></div><br>
-    <div id="map" style="width:350px;height:350px;background:grey"></div>
+    <div id="map" style="width:350px;height:350px;background:grey"
+         class="map" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
   </div>
 </div>
-
-
-
-
-
 
 <div th:replace="~{/fragments/headerfooter :: footer}">Hier komt de footer</div>
 
@@ -48,8 +44,10 @@
 
 <script>
   function MapCreation() {
+    var lat = $('.map').attr('latitude')
+    var lng = $('.map').attr('longitude')
     var mapOptions = {
-      center:new google.maps.LatLng(51.027853, 4.480014),
+      center:new google.maps.LatLng(lat, lng),
       zoom: 15
     }
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
