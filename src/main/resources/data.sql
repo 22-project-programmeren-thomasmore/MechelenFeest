@@ -32,10 +32,12 @@ VALUES (
 
 
 
-INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FESTIVAL_IMAGE, FESTIVAL_LINK, FESTIVAL_NAME,FESTIVAL_TYPE, MAX_CAPACITY, POPULATION)
+INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FESTIVAL_IMAGE, FESTIVAL_LINK, FESTIVAL_NAME,FESTIVAL_TYPE, MAX_CAPACITY, POPULATION, MAP_LAT, MAP_LNG)
                                 VALUES
-                                    (1, '#f28629', '2023-06-23', '2023-06-24', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/de-koer-festival/','De Koer','Music',10000,0),
-                                    (2, '#6FB746', '2023-06-29', '2023-08-17', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/parkpop/','Parkpop','Culture',1000,0),
-                                    (3, '#253679', '2023-08-25', '2023-08-27', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock-Aikon-Producties-3-scaled.jpg', 'https://dezomerisvanmechelen.be/event/maanrock/','Maanrock','Music',1000,0),
-                                    (4, '#d0422a', '2023-07-20', '2023-08-06', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220828_13_35_16_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/mechelen-beach/','Mechelen Beach','Sport',1000,0),
-                                    (5, '#9b51e0', '2023-07-01', '2023-09-30', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_19_36_27_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/hap-food-festival/','Hap Food Festival','Culture',1000,0);
+                                    (1, '#f28629', '2023-06-23', '2023-06-24', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/de-koer-festival/','De Koer','Music',10000,0,1.00,1000),
+                                    (2, '#6FB746', '2023-06-29', '2023-08-17', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_18_42_33_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/parkpop/','Parkpop','Culture',1000,0,2.20,300),
+                                    (3, '#253679', '2023-08-25', '2023-08-27', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock-Aikon-Producties-3-scaled.jpg', 'https://dezomerisvanmechelen.be/event/maanrock/','Maanrock','Music',1000,0,0.0,0.0),
+                                    (4, '#d0422a', '2023-07-20', '2023-08-06', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220828_13_35_16_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/mechelen-beach/','Mechelen Beach','Sport',1000,0,0,0),
+                                    (5, '#9b51e0', '2023-07-01', '2023-09-30', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_19_36_27_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/hap-food-festival/','Hap Food Festival','Culture',1000,0,0,0);
+
+

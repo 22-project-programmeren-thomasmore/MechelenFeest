@@ -25,6 +25,10 @@ public class Festival {
 
     private String festivalType;
 
+    // voor positie op map
+    private float mapLat;
+    private float mapLng;
+
     public Festival(){
         startDate = new Date(123,00,01);
         endDate = new Date(123,00,01);
@@ -54,6 +58,7 @@ public class Festival {
     public void setFestivalImage(String festivalImage) {
         this.festivalImage = festivalImage;
     }
+
 
     public Date getStartDate() {
         return startDate;
@@ -111,5 +116,20 @@ public class Festival {
         this.festivalType = festivalType;
     }
 
+    public void setMapLat(float mapLat) {
+        this.mapLat = mapLat;
+    }
+
+    public void setMapLng(float mapLng) {
+        this.mapLng = mapLng;
+    }
+
+    public float getMapLat() {
+        return mapLat;
+    }
+
+    public float getMapLng() {
+        return mapLng;
+    }
 }
 
