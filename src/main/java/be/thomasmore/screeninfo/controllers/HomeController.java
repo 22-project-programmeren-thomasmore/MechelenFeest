@@ -60,20 +60,25 @@ public class HomeController {
         {
             Optional<EndUser> user = userRepository.findById(token.getUser().getId());
             model.addAttribute("User", user);
+            model.addAttribute("Token", token.getToken());
         }
         return "new-password";
     }
 
-    @PostMapping({"/new-password"})
-    public String newPasswordPost(@Valid EndUser user, @RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmNewPassword){
-        if (user.getPassword().equals(oldPassword)){
-            if (newPassword.equals(confirmNewPassword)){
+    @PostMapping({"/new-password/{verificationToken}"})
+    public String newPasswordPost(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmNewPassword, @PathVariable String verificationToken){
+        VerificationToken token = verificationTokenRepository.findByToken(verificationToken);
+        Optional<EndUser> foundUser = userRepository.findById(token.getUser().getId());
+        EndUser user = foundUser.get();
+        String oldEncodedPassword = encoder.encode(oldPassword.trim());
 
-                String encodedPassword = encoder.encode(confirmNewPassword.trim());
-                user.setPassword(encodedPassword);
+            if (newPassword.equals(confirmNewPassword)){
+                System.out.println("TEST3 CHECK ");
+                String newEncodedPassword = encoder.encode(confirmNewPassword.trim());
+                user.setPassword(newEncodedPassword);
                 userRepository.save(user);
             }
-        }
+
         return "new-password";
     }
 }

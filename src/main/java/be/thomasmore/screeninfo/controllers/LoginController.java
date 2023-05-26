@@ -58,7 +58,9 @@ public class LoginController {
         if (userName == null || userName.trim().equals("")) return "redirect:/festivallijst?lang="+language;
         if (password == null || password.trim().equals("")) return "redirect:/festivallijst?lang="+language;
         userName = userName.trim();
+        System.out.println("TESTOLD CHECK " + password);
         String encodedPassword = encoder.encode(password.trim());
+        System.out.println("TESTOLD CHECK " + encodedPassword);
         EndUser user = new EndUser(emailAddress, userName, encodedPassword, "ROLE_USER", true);
         userRepository.save(user);
         VerificationToken token = new VerificationToken(user);
