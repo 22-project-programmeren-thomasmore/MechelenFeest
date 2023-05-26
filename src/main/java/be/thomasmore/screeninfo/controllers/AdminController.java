@@ -27,8 +27,8 @@ public class AdminController {
         }
         Festival festival = optionalFestival.get();
         model.addAttribute("festival", festival);
-        Optional<Festival> optionalPrevFestival = festivalRepository.findFirstByIdLessThanOrderByIdDesc(festival.id);
-        Optional<Festival> optionalNextFestival = festivalRepository.findFirstByIdGreaterThanOrderById(festival.id);
+        Optional<Festival> optionalPrevFestival = festivalRepository.findFirstByIdLessThanOrderByIdDesc(festival.getId());
+        Optional<Festival> optionalNextFestival = festivalRepository.findFirstByIdGreaterThanOrderById(festival.getId());
         if (optionalPrevFestival.isPresent()) {
             model.addAttribute("prev", optionalPrevFestival.get().getId());
         } else {

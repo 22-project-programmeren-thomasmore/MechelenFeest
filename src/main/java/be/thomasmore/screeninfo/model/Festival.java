@@ -9,11 +9,10 @@ import java.sql.Date;
 
 @Entity
 public class Festival {
-
     @SequenceGenerator(name = "FestSeqGen", sequenceName = "FestSeq", initialValue = 5, allocationSize = 1)
     @GeneratedValue(generator = "FestSeqGen")
     @Id
-    public Integer id;
+    private Integer id;
     private String festivalName;
     private String festivalImage;
     private String backgroundColor;

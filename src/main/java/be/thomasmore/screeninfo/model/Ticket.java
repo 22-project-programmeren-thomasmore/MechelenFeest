@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 public class Ticket {
-    @SequenceGenerator(name = "UserSeqGen", sequenceName = "UserSeq", initialValue = 5, allocationSize = 1)
-    @GeneratedValue(generator = "UserSeqGen")
+    @SequenceGenerator(name = "TicketSeqGen", sequenceName = "TicketSeq", initialValue = 5, allocationSize = 1)
+    @GeneratedValue(generator = "TicketSeqGen")
     @Id
     private Integer id;
 
