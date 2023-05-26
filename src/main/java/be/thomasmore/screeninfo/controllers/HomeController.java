@@ -50,7 +50,7 @@ public class HomeController {
         VerificationToken token = new VerificationToken(user);
         verificationTokenRepository.save(token);
         emailService.sendPasswordResetEmail(user, token);
-        return "reset-password";
+        return "reset-password-succes";
     }
 
     @GetMapping("/new-password/{verificationToken}")
@@ -77,6 +77,11 @@ public class HomeController {
                 userRepository.save(user);
             }
 
-        return "new-password";
+        return "redirect:/new-password-succes";
+    }
+
+    @GetMapping("/new-password-succes")
+    public String newPasswordSucces() {
+        return "new-password-succes";
     }
 }

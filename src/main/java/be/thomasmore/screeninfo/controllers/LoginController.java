@@ -69,7 +69,12 @@ public class LoginController {
         autologin(userName, password.trim());
         if (getUpdates)
             emailService.sendEmailWithAttachment(emailAddress, "Welkom", "Welkom bij de Mechelen Feest app");
-        return "redirect:/festivallijst?lang="+language;
+        return "redirect:/signup-succes?lang="+language;
+    }
+
+    @GetMapping("/signup-succes")
+    public String signupSucces() {
+        return "user/signup-succes";
     }
 
     @GetMapping("/confirm-account/{verificationToken}")
@@ -82,7 +87,7 @@ public class LoginController {
             user.setEnabled(true);
             userRepository.save(user);
         }
-        return "redirect:/festivallijst?lang="+language;
+        return "/confirm-account";
     }
 
     private void autologin(String userName, String password) {
