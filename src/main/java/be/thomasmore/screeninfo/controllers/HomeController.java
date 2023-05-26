@@ -66,14 +66,12 @@ public class HomeController {
     }
 
     @PostMapping({"/new-password/{verificationToken}"})
-    public String newPasswordPost(@RequestParam String oldPassword, @RequestParam String newPassword, @RequestParam String confirmNewPassword, @PathVariable String verificationToken){
+    public String newPasswordPost(@RequestParam String newPassword, @RequestParam String confirmNewPassword, @PathVariable String verificationToken){
         VerificationToken token = verificationTokenRepository.findByToken(verificationToken);
         Optional<EndUser> foundUser = userRepository.findById(token.getUser().getId());
         EndUser user = foundUser.get();
-        String oldEncodedPassword = encoder.encode(oldPassword.trim());
 
             if (newPassword.equals(confirmNewPassword)){
-                System.out.println("TEST3 CHECK ");
                 String newEncodedPassword = encoder.encode(confirmNewPassword.trim());
                 user.setPassword(newEncodedPassword);
                 userRepository.save(user);
