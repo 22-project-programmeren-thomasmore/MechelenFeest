@@ -25,6 +25,24 @@ public class EmailService {
         mailSender.send(message);
     }
 
+    public void sendVerificationEmail(EndUser user, VerificationToken token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmailAddress());
+        message.setSubject("Complete Registration!");
+        message.setText("To confirm your account, please click here : "
+                +"http://localhost:8080/confirm-account/"+token.getToken());
+        mailSender.send(message);
+    }
+
+    public void sendPasswordResetEmail(EndUser user, VerificationToken token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmailAddress());
+        message.setSubject("Reset Password");
+        message.setText("To reset your password, please click here : "
+                +"http://localhost:8080/new-password/"+token.getToken());
+        mailSender.send(message);
+    }
+
     public void sendEmailWithAttachment(String to, String subject, String text) throws MessagingException {
 
         MimeMessage message = mailSender.createMimeMessage();

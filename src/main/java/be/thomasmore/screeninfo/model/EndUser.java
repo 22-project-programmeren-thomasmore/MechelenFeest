@@ -12,6 +12,7 @@ public class EndUser {
     private String username;
     private String password;
     private String role;
+    private boolean enabled;
 
     private String taal; // NEDERLANDS , ENGLISH
     private boolean getUpdates;
@@ -23,6 +24,7 @@ public class EndUser {
         this.password = password;
         this.role = role;
         this.getUpdates = getUpdates;
+        this.enabled=false;
         taal = "NEDERLANDS";
     }
 
@@ -84,5 +86,13 @@ public class EndUser {
 
     public void setTaal(String taal) {
         this.taal = taal;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
     }
 }

@@ -2,7 +2,9 @@ package be.thomasmore.screeninfo.controllers;
 
 import be.thomasmore.screeninfo.model.EmailService;
 import be.thomasmore.screeninfo.model.EndUser;
+import be.thomasmore.screeninfo.model.VerificationToken;
 import be.thomasmore.screeninfo.repositories.UserRepository;
+import be.thomasmore.screeninfo.repositories.VerificationTokenRepository;
 import jakarta.mail.MessagingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,9 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -26,6 +26,9 @@ import java.security.Principal;
 public class LoginController {
     @Autowired
     private UserRepository userRepository;
+
+    @Autowired
+    private VerificationTokenRepository verificationTokenRepository;
     @Autowired
     private PasswordEncoder encoder;
     @Autowired
@@ -55,13 +58,36 @@ public class LoginController {
         if (userName == null || userName.trim().equals("")) return "redirect:/festivallijst?lang="+language;
         if (password == null || password.trim().equals("")) return "redirect:/festivallijst?lang="+language;
         userName = userName.trim();
+        System.out.println("TESTOLD CHECK " + password);
         String encodedPassword = encoder.encode(password.trim());
+        System.out.println("TESTOLD CHECK " + encodedPassword);
         EndUser user = new EndUser(emailAddress, userName, encodedPassword, "ROLE_USER", true);
         userRepository.save(user);
+        VerificationToken token = new VerificationToken(user);
+        verificationTokenRepository.save(token);
+        emailService.sendVerificationEmail(user, token);
         autologin(userName, password.trim());
         if (getUpdates)
             emailService.sendEmailWithAttachment(emailAddress, "Welkom", "Welkom bij de Mechelen Feest app");
-        return "redirect:/festivallijst?lang="+language;
+        return "redirect:/signup-succes?lang="+language;
+    }
+
+    @GetMapping("/signup-succes")
+    public String signupSucces() {
+        return "user/signup-succes";
+    }
+
+    @GetMapping("/confirm-account/{verificationToken}")
+    public String confirmUserAccount(@PathVariable String verificationToken, @RequestParam(required = false, defaultValue = "nl") String language) {
+        language = checkLanguageCode(language);
+        VerificationToken token = verificationTokenRepository.findByToken(verificationToken);
+        if(token != null)
+        {
+            EndUser user = userRepository.findByEmailAddress(token.getUser().getEmailAddress());
+            user.setEnabled(true);
+            userRepository.save(user);
+        }
+        return "/confirm-account";
     }
 
     private void autologin(String userName, String password) {
