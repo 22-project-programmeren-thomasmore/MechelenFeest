@@ -21,11 +21,15 @@
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
 
+<div class="body-festivaldetail">
 
+  <!-- <div class="col-md-6">
+            <img th:src="@{|${festival.getFestivalImage()}|}" alt="Image">
+          </div>-->
 
   <div class="row">
     <div class="col-md-12 text-center">
-      <div class="frame">
+      <div class="frame mx-auto">
         <div class="row">
           <div class="col-sm-6 col-md-6 col-lg-6 text-center">
             <div class="festival-row festival-name" th:if="${festival}">
@@ -51,11 +55,8 @@
               <div th:if="${festival.isOnGoing()}" class="info">Is Live:
                 <p th:text="${festival.getBusyness()}">yes</p></div><br>
               <div id="map" style="width:350px;height:350px;background:grey"
-                   class="map" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
+                   class="map col-md-6" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
             </div>
-          </div>
-          <div class="col-md-6">
-            <img th:src="@{|${festival.getFestivalImage()}|}" alt="Image">
           </div>
         </div>
       </div>
@@ -63,7 +64,7 @@
   </div>
 </div>
 
-
+</div>
 <div th:replace="~{/fragments/headerfooter :: footer}">Hier komt de footer</div>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>

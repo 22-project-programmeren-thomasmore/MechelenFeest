@@ -558,8 +558,12 @@ nav .nav-link:hover {
 /*   Detail Pagina Stijl Start   */
 /*-------------------------------------------------------------------------------------------------------*/
 
+.body-festivaldetail{
+    background-image: linear-gradient(145deg, var(--primary), var(--secondary));
+}
 
 .frame {
+    width: 85%;
     border: 2px solid orange;
     padding: 20px;
     border-radius: 15px;
@@ -583,3 +587,4 @@ nav .nav-link:hover {
 .festival-row i, .info i {
     margin-right: 5px;
 }
+
