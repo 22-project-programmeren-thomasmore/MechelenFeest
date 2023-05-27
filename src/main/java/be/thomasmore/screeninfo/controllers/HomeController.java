@@ -39,6 +39,16 @@ public class HomeController {
         return "contact";
     }
 
+    @PostMapping("/contact")
+    public String ContactPaginaPost(@RequestParam String email,@RequestParam String name, @RequestParam String message) {
+        EndUser user = userRepository.findById(1).get();
+        emailService.sendEmail(user.getEmailAddress()," De Zomer van Mechelen  -  Je hebt een nieuwe bericht ",email,
+                "Naam : " + name
+                        + "\n Email : " + email
+                        + "\n Bericht : " + message);
+        return "contact";
+    }
+
     @GetMapping("/reset-password")
     public String getResetPassword() {
         return "reset-password";
