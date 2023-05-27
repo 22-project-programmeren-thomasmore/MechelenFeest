@@ -43,4 +43,14 @@ INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FEST
 INSERT INTO TICKET
 (ID, name, price, festival_Id)
 VALUES
-    (1, 'Standaard Ticket', 5.00 , 1);
+    (1, 'Dagticket vrijdag', 22.50 , 1);
+
+INSERT INTO TICKET
+(ID, name, price, festival_Id)
+VALUES
+    (2, 'Dagticket zaterdag', 22.50 , 1);
+
+INSERT INTO TICKET
+(ID, name, price, festival_Id)
+VALUES
+    (3, 'Combi ticket', 37.50 , 1);

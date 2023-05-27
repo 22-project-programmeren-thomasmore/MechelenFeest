@@ -85,7 +85,6 @@
                     <h3 th:text="${festival.getFestivalName()}" class="festival-name">DE KOER</h3>
                 </span>
                 <span class="more festival-moreinfo" th:text="|&rarr; #{readmore}|"> &rarr; Lees meer</span>
-                 <a class="" th:href="@{/ticketlist/${festival.id}}"></a>
                 <div th:if="${festival.onGoing}">
                     <span class="festival-active" style="border-color: #b51d35; background-color: #b51d3545; color: #eaacac" th:if="${festival.busyness == 'FULL'}" th:text="#{festival.vol}"> Vol</span>
                     <span class="festival-active" style="border-color: #df7e34; background-color: #df7e3445; color: #f6d1a0"th:if="${festival.busyness == 'BUSY'}" th:text="#{festival.druk}">druk</span>

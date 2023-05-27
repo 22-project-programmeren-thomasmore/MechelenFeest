@@ -21,7 +21,7 @@
 
 <div class="container mb-4 mt-4">
   <div class="border row-cols-3">
-    <div th:each="ticket: ${tickets}">
+    <div class="col-2" th:each="ticket: ${tickets}">
       <span th:text="${ticket.getName()}">Naam</span>
     </div>
   </div>
