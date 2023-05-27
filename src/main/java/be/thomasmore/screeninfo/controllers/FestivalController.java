@@ -29,9 +29,6 @@ public class FestivalController {
     @Autowired
     private FestivalRepository festivalRepository;
 
-    @Autowired
-    private TicketRepository ticketRepository;
-
     @GetMapping({"/","/festivallijst","/festivallijst/{filter}"})
     public String festivalList(Model model, Principal principal,
                                @RequestParam(required = false) String keyword,
@@ -57,15 +54,6 @@ public class FestivalController {
         model.addAttribute("festivals", festivalItems);
 
         return "festivallijst";
-    }
-
-    @GetMapping("/ticketlist/{id}")
-    public String paidFestivals(Model model, @PathVariable Integer id) {
-        Optional<Festival> optionalFestival = festivalRepository.findById(id);
-        Festival festival = optionalFestival.get();
-        List<Ticket> ticketList = ticketRepository.findByFestival(festival);
-        model.addAttribute("tickets", ticketList);
-        return "ticketlist";
     }
 
 }

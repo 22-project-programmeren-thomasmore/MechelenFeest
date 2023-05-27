@@ -20,10 +20,12 @@
 
 
 <div class="container mb-4 mt-4">
-  <div class="border row-cols-3">
-    <div class="col-2" th:each="ticket: ${tickets}">
-      <span th:text="${ticket.getName()}">Naam</span>
-    </div>
+  <div class="border col-md-6 offset-md-3 p-4">
+    <form th:action="@{/ticketlist}" method="post">
+      <div th:each="ticket: ${tickets}">
+        <span th:text="${ticket.getName()}">Naam</span>
+      </div>
+    </form>
   </div>
 </div>
 
