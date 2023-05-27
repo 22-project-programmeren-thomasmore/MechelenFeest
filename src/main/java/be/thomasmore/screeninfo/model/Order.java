@@ -14,21 +14,20 @@ public class Order {
     private Integer id;
 
     @OneToMany(fetch = FetchType.LAZY)
-    private List<OrderTicket> orderTickets = new ArrayList<>();
+    private List<ShoppingCart> cartItems = new ArrayList<>();
 
     @Transient
     public Double getTotalOrderPrice() {
         double sum = 0;
-        List<OrderTicket> orderTickets = getOrderTickets();
-        for (OrderTicket orderTicket : orderTickets) {
-            sum += orderTicket.getTotalPrice();
+        for (ShoppingCart cartItem : cartItems) {
+            sum += cartItem.getAmount();
         }
         return sum;
     }
 
     @Transient
     public int getNumberOfTickets() {
-        return this.orderTickets.size();
+        return this.cartItems.size();
     }
 
     public Order() {
@@ -42,11 +41,11 @@ public class Order {
         this.id = id;
     }
 
-    public List<OrderTicket> getOrderTickets() {
-        return orderTickets;
+    public List<ShoppingCart> getCartItems() {
+        return cartItems;
     }
 
-    public void setOrderTickets(List<OrderTicket> orderTickets) {
-        this.orderTickets = orderTickets;
+    public void setCartItems(List<ShoppingCart> cartItems) {
+        this.cartItems = cartItems;
     }
 }
