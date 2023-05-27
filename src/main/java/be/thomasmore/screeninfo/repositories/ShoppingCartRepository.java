@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;
 
-public interface ShoppingCartRepository extends CrudRepository<ShoppingCartRepository, Integer> {
+public interface ShoppingCartRepository extends CrudRepository<ShoppingCart, Integer> {
+    Optional<ShoppingCart> findByProductId(int productId);
 
 }

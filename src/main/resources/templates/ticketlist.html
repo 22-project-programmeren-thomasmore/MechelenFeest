@@ -23,11 +23,15 @@
 
 <div class="container mb-4 mt-4">
     <div class="border col-md-6 offset-md-3 p-4">
-            <div th:each="ticket: ${tickets}">
+        <div th:each="ticket: ${tickets}">
+            <form th:action="@{|/addToCart/*{ticket.id}|}" method="post">
                 <span th:text="${ticket.getName()}">Naam</span>
-              <span th:text="${ticket.getPrice()}">Naam</span>
-              <a th:href="@{|/addToCart/${ticket.getId()}|}">Add To Cart</a>
-            </div>
+                <span th:text="${ticket.getPrice()}">Naam</span>
+                <input type="number" min="0" value="0" id="quantity" name="quantity">
+                <button type="submit" class="btn btn-block text-uppercase align-self-center">Add to Cart</button>
+
+            </form>
+        </div>
     </div>
 </div>
 

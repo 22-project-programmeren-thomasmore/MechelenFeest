@@ -14,7 +14,7 @@ public class ShoppingCart {
     private double amount;
 
 
-    public ShoppingCart(int productId, String productName, int quantity, float amount) {
+    public ShoppingCart(int productId, String productName, int quantity, double amount) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
