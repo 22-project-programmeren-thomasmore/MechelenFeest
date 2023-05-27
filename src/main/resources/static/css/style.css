@@ -571,4 +571,15 @@ nav .nav-link:hover {
 .festival-row {
     background-color: #FDD835;
     padding: 20px;
+    justify-content: center;
+}
+
+.festival-row, .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.festival-row i, .info i {
+    margin-right: 5px;
 }
