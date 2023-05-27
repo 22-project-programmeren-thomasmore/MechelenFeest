@@ -1,5 +1,10 @@
 
-
+.language-icon {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+}
 div {
     display: block;
 }
@@ -36,19 +41,63 @@ svg {
     border-bottom-color: #FFD31C;
     border-bottom-width: 8px;
 }
+
+.navtext1 {
+    font-weight: bold;
+    position: relative;
+    color: #253679;
+    padding: 0.4em 1em;
+}
+
+.navtext1::after,
+.navtext1::before {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 20%;
+    height: 20%;
+    border: 3px solid;
+    transition: all 0.6s ease;
+    border-radius: 2px;
+}
+
+.navtext1::after {
+    bottom: 0;
+    right: 0;
+    border-top-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: #FFD31C;
+    border-right-color: #FFD31C;
+}
+
+.navtext1::before {
+    top: 0;
+    left: 0;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+    border-top-color: #FFD31C;
+    border-left-color: #FFD31C;
+}
+
+.navtext1:hover::after,
+.navtext1:hover::before {
+    width: 100%;
+    height: 100%;
+}
+
 nav .nav-link {
 
 }
 
 nav .nav-link:hover {
+    color:#253679;
+    font-weight: bold;
 
-    color: white;
 }
 
 .navbar-collapse{
  transition: all .5s;
 }
-
 
 .navbar-toggler-icon {
 
@@ -69,13 +118,12 @@ nav .nav-link:hover {
     padding:7px;
 }
 
-
+/* Styles for wrapping the search box */
 
 .main {
     width: 10%;
 
 }
-
 
 
 .has-search .form-control {
@@ -99,9 +147,9 @@ nav .nav-link:hover {
      transition: all .6s;
  }
 
- /*.events {*/
- /*    display: inline-block;*/
- /*}*/
+ .events {
+     display: inline-block;
+ }
 
 .festival {
     position: relative;
@@ -127,20 +175,31 @@ nav .nav-link:hover {
 }
 
 .festival-date {
-    padding-bottom: 1em;
+    padding-bottom: 1.25em;
     color: #FFD31C;
-    font-size: 1em;
-    font-weight: 650;
-    letter-spacing: 0em;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+.festival:nth-child(4n+4) .festival-date {
+    font-size: 1.1em;
+    color: #FFD31C;
+    font-weight: 700;
+    letter-spacing: 0;
 }
 
 
 .festival-name {
-    font-size: 1.65em;
+    font-size: 2.3em;
+    text-transform: lowercase;
+    letter-spacing: 0.08em;
+}
+
+.festival:nth-child(4n+4) .festival-name {
+    font-size: 1.8em;
     text-transform: lowercase;
     letter-spacing: 0;
 }
-
 
 .festival-cover{
     float: right;
@@ -181,7 +240,7 @@ nav .nav-link:hover {
     right: 40px;
     bottom: 150px;
 
-    font-size: 20px;
+    font-size: 25px;
 
     padding: 2px 30px;
     border-width: 3px;
@@ -261,7 +320,10 @@ nav .nav-link:hover {
     padding: 5vh;
     background-color: #53C0D7;
 }
+.login-button{
+    font-weight: bold;
 
+}
 .logout{
     background: none;
     border: none;
@@ -275,64 +337,75 @@ nav .nav-link:hover {
     color: black;
     text-decoration: none;
 }
+.signup-button {
+    text-align: center;
+    font-weight: bold;
+    padding: 0.3em 1em;
+    border: none;
+    outline: none;
+    color: #253679;
+    background: #FFD31C;
+    cursor: pointer;
+    position: relative;
+    z-index: 0;
+    border-radius: 50px;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+}
+
+.signup-button:before {
+    content: "";
+    background: linear-gradient(
+            45deg,
+            #ff0000,
+            #ff7300,
+            #253679,
+            #219EBC
+    );
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    background-size: 400%;
+    z-index: -1;
+    filter: blur(5px);
+    -webkit-filter: blur(5px);
+    width: calc(100% + 4px);
+    height: calc(100% + 4px);
+    animation: glowing-button-85 20s linear infinite;
+    transition: opacity 0.3s ease-in-out;
+    border-radius: 50px;
+}
+
+@keyframes glowing-button-85 {
+    0% {
+        background-position: 0 0;
+    }
+    50% {
+        background-position: 400% 0;
+    }
+    100% {
+        background-position: 0 0;
+    }
+}
+
+.signup-button:after {
+    z-index: -1;
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+    left: 0;
+    top: 0;
+    border-radius: 10px;
+}
 
 
 .Error{
     text-align: center;
     font-size: 3vw;
 }
-
-.filterbutton {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: #53C0D7;
-    padding: 2px;
-}
-
-.filterbutton button {
-    /*margin-left: 30px;*/
-}
-
-/*.logoMain {*/
-/*    display: flex;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    background: #53C0D7;*/
-/*    padding: 100px;*/
-/*}*/
-
-/*.geleball{*/
-/*    display: flex;*/
-/*    position: absolute;*/
-/*    background: #FFD31C;*/
-/*    border-radius: 50%;*/
-/*    height: 150px;*/
-/*    width: 150px;*/
-/*    justify-content: center;*/
-/*    align-items: center;*/
-/*    z-index: 1;*/
-/*}*/
-
-/*.geleball p{*/
-/*    color: #253679;*/
-/*    font-size: 2.1em;*/
-/*    font-weight: bold;*/
-/*    letter-spacing: 0.06em;*/
-/*}*/
-
-
-
-
-/*-------------------------------------------------------------------------------------------------------*/
-/*   Footer Stijl */
-
-#footer{
-    display: flex;
-    flex-direction: column;
-}
-
-
 
 /*-------------------------------------------------------------------------------------------------------*/
 /*   Contact Pagina Stijl Start  */
@@ -418,6 +491,7 @@ nav .nav-link:hover {
     cursor: pointer;
 }
 
+
 @media only screen and (max-width: 690px) {
     .form::before{
         display: none;
@@ -438,7 +512,7 @@ nav .nav-link:hover {
 
 
 
-@media only screen and (max-width: 976px) {
+@media only screen and (max-width: 690px) {
 
     .events {
         display: grid;
@@ -449,12 +523,8 @@ nav .nav-link:hover {
         width: auto;
     }
 
-    .festival-moreinfo {
+    .festival:nth-child(4n+4) .festival-moreinfo {
         display: none;
-    }
-
-    .festival-active{
-        bottom: 75px;
     }
 }
 
@@ -485,42 +555,20 @@ nav .nav-link:hover {
 }
 
 /*-------------------------------------------------------------------------------------------------------*/
-/*   Festival Detail Pagina Stijl Start  */
+/*   Detail Pagina Stijl Start   */
 /*-------------------------------------------------------------------------------------------------------*/
 
+
 .frame {
-    border: 2px solid #333;
+    border: 2px solid orange;
     padding: 20px;
-    text-align: center;
-    width: 400px;
-    margin: 0 auto;
+    border-radius: 15px;
     background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.festival-name {
-    font-size: 24px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 10px;
+.festival-row {
+    background-color: #FDD835;
+    padding: 20px;
 }
-
-.info {
-    font-weight: bold;
-    color: #555;
-}
-
-a {
-    color: #007bff;
-    text-decoration: none;
-}
-
-a:hover {
-    text-decoration: underline;
-}
-
-p {
-    margin: 0;
-}
-
