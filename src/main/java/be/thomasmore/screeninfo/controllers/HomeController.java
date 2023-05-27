@@ -16,7 +16,4 @@ public class HomeController {
     public String getContactPagina() {
         return "contact";
     }
-
-    @GetMapping("/mapTest")
-    public String getMapTest(){ return "maptest";}
 }

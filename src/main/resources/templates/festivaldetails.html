@@ -74,17 +74,23 @@
 
 <script>
   function MapCreation() {
-    var lat = $('.map').attr('latitude')
-    var lng = $('.map').attr('longitude')
+    var latVar = $('.map').attr('latitude')
+    var lngVar = $('.map').attr('longitude')
+    const myLatLng = new google.maps.LatLng(latVar, lngVar);
     var mapOptions = {
-      center:new google.maps.LatLng(lat, lng),
-      zoom: 16
+      center:myLatLng,
+      zoom: 16,
+      mapId:'mymap'
     }
     var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    new google.maps.Marker({
+      position: myLatLng,
+      map,
+    });
+
   }
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBu-916DdpKAjTmJNIgngS6HL_kDIKU0aU&callback=MapCreation"></script>
-<script src="https://maps.googleapis.com/maps/api/js?callback=mMap"></script>
+<script src="https://maps.googleapis.com/maps/api/js?callback=MapCreation"></script>
 
 </body>
 </html>
