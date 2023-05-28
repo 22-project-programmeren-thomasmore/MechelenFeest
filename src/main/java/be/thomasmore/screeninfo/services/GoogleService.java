@@ -32,13 +32,13 @@ public class GoogleService {
 
 
 
-    public String toFirebase(File file, String fileName) throws IOException {
-        BlobId blobId = BlobId.of(imageBucket, fileName);
+    public String toFirebase(File file) throws IOException {
+        BlobId blobId = BlobId.of(imageBucket,  file.getName());
         BlobInfo blobInfo = BlobInfo.newBuilder(blobId).setContentType("media").build();
         Credentials credentials = GoogleCredentials.fromStream(GoogleService.class.getClassLoader().getResourceAsStream(jsonFile));
         Storage storage = StorageOptions.newBuilder().setCredentials(credentials).build().getService();
         storage.create(blobInfo, Files.readAllBytes(file.toPath()));
-        return String.format("https://firebasestorage.googleapis.com/v0/b/infoscreen-a18cd.appspot.com/o/%s?alt=media", URLEncoder.encode(fileName, StandardCharsets.UTF_8));
+        return String.format("https://firebasestorage.googleapis.com/v0/b/infoscreen-a18cd.appspot.com/o/%s?alt=media", URLEncoder.encode(file.getName(), StandardCharsets.UTF_8));
     }
 
 

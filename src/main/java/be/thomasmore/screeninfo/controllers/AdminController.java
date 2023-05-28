@@ -7,10 +7,14 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.util.Optional;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/admin")
@@ -60,34 +64,66 @@ public class AdminController {
     @GetMapping("/festivalcreator")
     public String addFestival(Model model) {
         model.addAttribute("festival", new Festival());
+        model.addAttribute("img", new File("",""));
         return "admin/festivalcreator";
     }
 
     @PostMapping("/festivalcreator")
-    public String addFestivalPost(Model model, @Valid Festival festival) {
+    public String addFestivalPost(Model model, @Valid Festival festival, @RequestParam(required = false) MultipartFile img, BindingResult bindingResult) {
         boolean valid = true;
+        String errorText = "";
         if(festival.getFestivalName() == null || festival.getFestivalName().trim() == ""
                 || festival.getFestivalImage() == null || festival.getFestivalImage().trim() == ""
-                || festival.getMaxCapacity() == null ||festival.getMaxCapacity() <= 0){
+                || festival.getMaxCapacity() == null || festival.getMaxCapacity() <= 0
+                || img == null){
             valid = false;
+            errorText += "gelieven alle velden in te vullen";
+        }
+        else {
+            if(festival.getEndDate().before(festival.getStartDate())){
+                festival.setEndDate(festival.getStartDate());
+            }
+
+            String imageLink = uploadFile(img);
+            if(imageLink == ""){
+                valid = false;
+                errorText += "photo Uploaden is gefaald, probeer later opnieuw";
+            }
+            else{
+                festival.setFestivalImage(imageLink);
+            }
+
+            festival.setPopulation(0);
         }
 
-        if(festival.getEndDate().before(festival.getStartDate())){
-            festival.setEndDate(festival.getStartDate());
-        }
-
-        festival.setPopulation(0);
 
         if(valid){
             festivalRepository.save(festival);
             return "redirect:/festivallijst";
         }
         model.addAttribute("festival", festival);
+        model.addAttribute("img",img);
         model.addAttribute("foutief", true);
+        model.addAttribute("foutiefText", errorText);
         return "admin/festivalcreator";
     }
 
 
+    private String uploadFile(MultipartFile file){
+        try {
+            String fileName = file.getOriginalFilename();
+            fileName = fileName.concat(UUID.randomUUID().toString()).concat(fileName.substring(fileName.lastIndexOf(".")));
+            File newFile = new File(fileName);
+            try (FileOutputStream fos = new FileOutputStream(newFile)) {
+                fos.write(file.getBytes());
+            }
+
+            return googleService.toFirebase(newFile);
+        } catch (Exception e) {
+            System.out.println("ERROR: Niet kunnen uploaden : " + e.getMessage());
+            return "";
+        }
+    }
 
 
     @GetMapping("/test")
@@ -95,7 +131,7 @@ public class AdminController {
         System.out.println("hello?");
         File uploadFile= new File("./Dockerfile");
         try {
-            System.out.println(googleService.toFirebase(uploadFile, "DockerFileFile"));
+            System.out.println(googleService.toFirebase(uploadFile));
             System.out.println("Gelukt!");
         } catch (Exception e) {
             System.out.println("Niet gelukt : " + e.getMessage());

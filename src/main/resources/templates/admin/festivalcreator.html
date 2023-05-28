@@ -21,9 +21,9 @@
 
 <div class="container mb-4 mt-4">
     <div class="border col-md-6 offset-md-3 p-4">
-        <form th:action="@{/admin/festivalcreator}" method="post">
+        <form th:action="@{/admin/festivalcreator}" method="post" enctype="multipart/form-data">
             <div class="oneinput" th:if="${foutief}">
-                <p class="btn mt-2" style="color: #610000">gelieven alle velden in te vullen</p>
+                <p class="btn mt-2" style="color: #610000" th:text="${foutiefText}">gelieven alle velden in te vullen</p>
             </div>
             <div class="oneinput">
                 <label for="festivalName" class="form-label">Name: </label>
@@ -51,7 +51,7 @@
             </div>
             <div class="oneinput">
                 <label for="festivalImage" class="form-label">Image: </label>
-                <input type="text" id="festivalImage" class="form-control mb-2" name="festivalImage" th:value="*{festival.festivalImage} ?: 'https://www.dezomerisvanmechelen.be/sites/default/files/styles/event_cover_front/public/events/cover/190823-201655-Maanrock2019-JD%20%28Groot%29.jpg?itok=QF0Db-NJ'">
+                <input type="file" id="festivalImage" class="form-control mb-2" name="img" accept="image/*" th:field="*{img}">
             </div>
             <div class="oneinput">
                 <input type="submit" value="create" class="btn btn-primary mt-2">
