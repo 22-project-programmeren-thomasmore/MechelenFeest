@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface UserRepository extends CrudRepository<EndUser, Integer> {
     EndUser findByEmailAddress(String address);
+    EndUser findByUsername(String userName);
 }

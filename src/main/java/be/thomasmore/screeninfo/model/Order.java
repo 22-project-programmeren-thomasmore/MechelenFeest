@@ -1,6 +1,7 @@
 package be.thomasmore.screeninfo.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.ManyToAny;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +14,9 @@ public class Order {
     @Id
     private Integer id;
 
-    @OneToMany(fetch = FetchType.LAZY)
+    @ManyToOne
+    private EndUser user;
+    @OneToMany(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
     private List<ShoppingCart> cartItems = new ArrayList<>();
 
     @Transient
@@ -28,6 +31,15 @@ public class Order {
     @Transient
     public int getNumberOfTickets() {
         return this.cartItems.size();
+    }
+
+    public Order(List<ShoppingCart> cartItems) {
+        this.cartItems = cartItems;
+    }
+
+    public Order(List<ShoppingCart> cartItems, EndUser user) {
+        this.cartItems = cartItems;
+        this.user = user;
     }
 
     public Order() {
@@ -47,5 +59,13 @@ public class Order {
 
     public void setCartItems(List<ShoppingCart> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    public EndUser getUser() {
+        return user;
+    }
+
+    public void setUser(EndUser user) {
+        this.user = user;
     }
 }
