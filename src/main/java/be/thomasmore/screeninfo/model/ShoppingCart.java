@@ -11,14 +11,14 @@ public class ShoppingCart {
     private String productName;
     private int productId;
     private int quantity;
-    private double amount;
+    private double totalPrice;
 
 
-    public ShoppingCart(int productId, String productName, int quantity, double amount) {
+    public ShoppingCart(int productId, String productName, int quantity, double totalPrice) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
-        this.amount = amount;
+        this.totalPrice = totalPrice * quantity;
     }
 
     public ShoppingCart() {
@@ -57,11 +57,11 @@ public class ShoppingCart {
         this.quantity = quantity;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getTotalPrice() {
+        return totalPrice;
     }
 
-    public void setAmount(float amount) {
-        this.amount = amount;
+    public void setTotalPrice(float amount) {
+        this.totalPrice = amount;
     }
 }

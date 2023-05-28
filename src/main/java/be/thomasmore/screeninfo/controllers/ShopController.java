@@ -31,17 +31,23 @@ public class ShopController {
         Festival festival = optionalFestival.get();
         List<Ticket> ticketList = ticketRepository.findByFestival(festival);
         model.addAttribute("tickets", ticketList);
+        List<ShoppingCart> shoppingCartList = (List<ShoppingCart>) shoppingCartRepository.findAll();
+        model.addAttribute("cartItems", shoppingCartList);
         return "ticketlist";
     }
 
     @PostMapping("/addToCart/{id}/{ticketId}")
     public String listProductHandler(@PathVariable Integer id, @PathVariable Integer ticketId, @RequestParam int quantity) {
-        Ticket ticket = ticketRepository.findById(id).get();
-        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductId(id);
+        Ticket ticket = ticketRepository.findById(ticketId).get();
+        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductId(ticketId);
         if (optionalShoppingCart.isPresent()){
             ShoppingCart shoppingCart = optionalShoppingCart.get();
             shoppingCart.setQuantity(quantity);
-            shoppingCartRepository.save(shoppingCart);
+            if (quantity==0){
+                shoppingCartRepository.delete(shoppingCart);
+            } else {
+                shoppingCartRepository.save(shoppingCart);
+            }
         } else {
             if (quantity!=0) {
                 ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(), ticket.getName(), quantity, ticket.getPrice());
