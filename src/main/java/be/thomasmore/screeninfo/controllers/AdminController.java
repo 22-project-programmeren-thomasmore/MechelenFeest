@@ -2,12 +2,14 @@ package be.thomasmore.screeninfo.controllers;
 
 import be.thomasmore.screeninfo.model.Festival;
 import be.thomasmore.screeninfo.repositories.FestivalRepository;
+import be.thomasmore.screeninfo.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
 import java.util.Optional;
 
 @Controller
@@ -17,8 +19,11 @@ public class AdminController {
     @Autowired
     private FestivalRepository festivalRepository;
 
+    @Autowired
+    private GoogleService googleService;
+
     @GetMapping({"/festivaleditor", "/festivaleditor/{id}"})
-    public String editFestival(Model model, @PathVariable(required = false) Integer id) {
+    public String editFestival(Model model, @PathVariable(required = false) Integer id, @RequestParam(required = false) File img) {
         Optional<Festival> optionalFestival;
         if (id != null) {
             optionalFestival = festivalRepository.findById(id);
@@ -81,4 +86,21 @@ public class AdminController {
         model.addAttribute("foutief", true);
         return "admin/festivalcreator";
     }
+
+
+
+
+    @GetMapping("/test")
+    public String testing(Model model) {
+        System.out.println("hello?");
+        File uploadFile= new File("./Dockerfile");
+        try {
+            System.out.println(googleService.toFirebase(uploadFile, "DockerFileFile"));
+            System.out.println("Gelukt!");
+        } catch (Exception e) {
+            System.out.println("Niet gelukt : " + e.getMessage());
+        }
+        return "map";
+    }
+
 }
