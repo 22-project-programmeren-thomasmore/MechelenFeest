@@ -1,12 +1,11 @@
 package be.thomasmore.screeninfo.repositories;
 
-import be.thomasmore.screeninfo.model.Festival;
-import be.thomasmore.screeninfo.model.Order;
-import be.thomasmore.screeninfo.model.ShoppingCart;
-import be.thomasmore.screeninfo.model.Ticket;
+import be.thomasmore.screeninfo.model.*;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface OrderRepository extends CrudRepository<Order, Integer> {
+    List<Order> findAllByUser(EndUser user);
 }
