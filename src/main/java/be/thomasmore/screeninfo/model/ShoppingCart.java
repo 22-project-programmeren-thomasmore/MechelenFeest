@@ -4,8 +4,8 @@ import jakarta.persistence.*;
 
 @Entity
 public class ShoppingCart {
-    @SequenceGenerator(name = "UserSeqGen", sequenceName = "UserSeq", initialValue = 5, allocationSize = 1)
-    @GeneratedValue(generator = "UserSeqGen")
+    @SequenceGenerator(name = "CartSeqGen", sequenceName = "CartSeq", initialValue = 5, allocationSize = 1)
+    @GeneratedValue(generator = "CartSeqGen")
     @Id
     private Integer id;
     private String productName;
@@ -14,11 +14,11 @@ public class ShoppingCart {
     private double totalPrice;
 
 
-    public ShoppingCart(int productId, String productName, int quantity, double totalPrice) {
+    public ShoppingCart(int productId, String productName, int quantity, double price) {
         this.productId = productId;
         this.productName = productName;
         this.quantity = quantity;
-        this.totalPrice = totalPrice * quantity;
+        this.totalPrice = price * quantity;
     }
 
     public ShoppingCart() {

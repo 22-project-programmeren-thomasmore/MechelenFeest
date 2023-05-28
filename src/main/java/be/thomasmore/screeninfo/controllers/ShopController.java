@@ -51,16 +51,10 @@ public class ShopController {
         if (optionalShoppingCart.isPresent()){
             ShoppingCart shoppingCart = optionalShoppingCart.get();
             shoppingCart.setQuantity(quantity);
-            if (quantity==0){
-                shoppingCartRepository.delete(shoppingCart);
-            } else {
                 shoppingCartRepository.save(shoppingCart);
-            }
         } else {
-            if (quantity!=0) {
                 ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(), ticket.getName(), quantity, ticket.getPrice());
                 shoppingCartRepository.save(shoppingCart);
-            }
         }
 
         return "redirect:/ticketlist/"+id;
@@ -83,7 +77,8 @@ public class ShopController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<ShoppingCart> shoppingCartList = new ArrayList<>();
         for (ShoppingCart s : shoppingCartRepository.findAll()) {
-            shoppingCartList.add(s);
+            ShoppingCart newItem = new ShoppingCart(s.getProductId(),s.getProductName(),s.getQuantity(),s.getTotalPrice());
+            shoppingCartList.add(newItem);
         }
         Order order;
         String currentUserName;
@@ -96,7 +91,7 @@ public class ShopController {
         }
         orderRepository.save(order);
         shoppingCartRepository.deleteAll(shoppingCartRepository.findAll());
-        return "checkout";
+        return "confirmation";
     }
 
 

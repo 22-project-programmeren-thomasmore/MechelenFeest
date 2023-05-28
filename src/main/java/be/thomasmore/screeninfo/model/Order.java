@@ -9,8 +9,8 @@ import java.util.List;
 @Entity
 @Table(name = "orders")
 public class Order {
-    @SequenceGenerator(name = "UserSeqGen", sequenceName = "UserSeq", initialValue = 5, allocationSize = 1)
-    @GeneratedValue(generator = "UserSeqGen")
+    @SequenceGenerator(name = "OrderSeqGen", sequenceName = "OrderSeq", initialValue = 5, allocationSize = 1)
+    @GeneratedValue(generator = "OrderSeqGen")
     @Id
     private Integer id;
 
