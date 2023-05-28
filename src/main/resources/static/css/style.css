@@ -585,7 +585,9 @@ nav .nav-link:hover {
 }
 
 .border-right {
+
     border-bottom: 2px solid #091126;
+    border-radius: 50px;
 }
 
 .return-button {
@@ -593,11 +595,9 @@ nav .nav-link:hover {
     float: left;
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff5722;
-    color: white;
+    color: red;
     text-decoration: none;
-    font-size: 16px;
-    border-radius: 4px;
+    font-size: 19px;
     transition: background-color 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -609,20 +609,21 @@ nav .nav-link:hover {
 }
 
 .return-button .icon {
-
     position: absolute;
     top: 0;
-    left: -100%;
-    width: 100%;
+    left: 0;
+    width: 0;
     height: 100%;
-    background-color: #ff4500;
+    background-color: red;
     color: white;
     font-size: 20px;
     line-height: 1;
-    transition: left 0.3s ease;
+    transition: width 0.3s ease;
 }
 
 .return-button:hover .icon {
-    left: 0;
+    width: 100%;
 }
+
+
 

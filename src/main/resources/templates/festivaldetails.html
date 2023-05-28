@@ -21,39 +21,56 @@
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
 
-<div class="body-festivaldetail">
-  <div class="container-festival">
-
-      <div class="row mx-auto">
-      <div class="col-md-12">
-        <div class="row">
-          <div class="col-12 text-center">
-            <div class="festival-row festival-name border-right" th:if="${festival}">
-              <span th:text="${festival.festivalName}"></span>
+  <div class="container">
+      <div class="col-md-12 mx-auto text-center">
+      <img th:src="@{|${festival.getFestivalImage()}|}" style="border-radius: 50%; width:220px; height: 190px; margin-top:15px; " alt="Image">
+</div>
+      <div class="row">
+        <div class="col-md-12 mx-auto text-center">
+            <div class="festival-row festival-name border-right fs-1" th:if="${festival}"><strong>
+                <span th:text="${festival.festivalName}"></span></strong>
             </div>
-            <div class="info festival-row festival-name">
+            <div class="info festival-row festival-name fs-2">
               <i class="far fa-calendar"></i>
               <span th:text="${festival.getDate()}"></span>
             </div>
           </div>
         </div>
-        <div class="row mx-auto text-center">
+       <div class="row mx-auto text-center">
           <div class="col-md-12">
             <p th:unless="${festival}"></p>
-
             <div th:if="${festival}">
-              <div>
-                <a th:href="@{${festival.getFestivalLink()}}" class="visit-website text-center" target="_blank">Visit Website</a>
-              </div><br>
               <div th:if="${festival.isOnGoing()}" class="info">Is Live:
                 <p th:text="${festival.getBusyness()}">yes</p>
+
               </div><br>
+                <div>
+                    <a th:href="@{${festival.getFestivalLink()}}" class="visit-website text-center" target="_blank">Visit Website</a>
+                </div><br>
             </div>
           </div>
+                   <div class="frame mx-auto map-frame">
+
+
+                       <div id="map" style="width:100%;height:350px;background:grey; border-radius: 15px;"
+                            class="map" th:attr="latitude=${festival.getMapLat()},longitude=${festival.getMapLng()}"></div>
+                   </div>
+
         </div>
       </div>
 
-    <div class="row mx-auto">
+
+
+
+<div class="row mx-auto">
+    <div class="col-md-6">
+        <div class="return-column">
+            <a href="/festivallijst" class=" return-button">
+                <i class="fas fa-arrow-left"></i> Return
+            </a>
+        </div>
+    </div>
+   <!-- <div class="row mx-auto">
       <div class="col-md-6 mx-auto">
         <div class="frame mx-auto map-frame">
           <img th:src="@{|${festival.getFestivalImage()}|}" alt="Image">
@@ -73,6 +90,24 @@
         </a>
       </div>
     </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <div class="card">
+        <div class="card-body">
+          <span th:text="${festival.festivalName}"></span>
+          <h2 class="card-title">Festival Name</h2>
+          <p class="card-text">Date of Festival: <span id="festival-date"></span></p>
+          <p class="card-text">Website: <a href="#" id="festival-website" target="_blank"></a></p>
+
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>-->
 
 
 
