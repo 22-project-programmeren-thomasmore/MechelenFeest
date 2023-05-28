@@ -6,7 +6,7 @@ function initMap(){
     });
 
     setMarkerWithIcon(map);
-
+    setMarkerWithoutIcon(map);
 }
 
 
@@ -49,3 +49,22 @@ function setMarkerWithIcon(map){
 
 
 }
+
+
+function setMarkerWithoutIcon(map) {
+
+    for (let i = 0; i<toilettes.length; i++) {
+        const wc = toilettes[i];
+
+        new google.maps.Marker({
+            position: {lat: wc[0], lng: wc[1]},
+            map,
+            title: "WC",
+        })
+
+    }
+
+}
+
+
+window.initMap = initMap;
