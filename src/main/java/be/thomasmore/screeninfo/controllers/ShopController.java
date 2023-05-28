@@ -34,17 +34,23 @@ public class ShopController {
         return "ticketlist";
     }
 
-    @PostMapping("/addToCart/{id}")
-    public String listProductHandler(@PathVariable Integer id, @RequestParam int quantity) {
+    @PostMapping("/addToCart/{id}/{ticketId}")
+    public String listProductHandler(@PathVariable Integer id, @PathVariable Integer ticketId, @RequestParam int quantity) {
         Ticket ticket = ticketRepository.findById(id).get();
-        ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(),ticket.getName(),quantity,ticket.getPrice());
-        shoppingCartRepository.save(shoppingCart);
-        return "redirect:/shoppingCart";
+        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductId(id);
+        if (optionalShoppingCart.isPresent()){
+            ShoppingCart shoppingCart = optionalShoppingCart.get();
+            shoppingCart.setQuantity(quantity);
+            shoppingCartRepository.save(shoppingCart);
+        } else {
+            if (quantity!=0) {
+                ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(), ticket.getName(), quantity, ticket.getPrice());
+                shoppingCartRepository.save(shoppingCart);
+            }
+        }
+
+        return "redirect:/ticketlist/"+id;
     }
 
-    @GetMapping("/shoppingCart")
-    public String shoppingCart() {
-        return "shoppingcart";
-    }
 
 }
