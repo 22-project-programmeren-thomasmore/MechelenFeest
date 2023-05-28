@@ -4,20 +4,15 @@ import be.thomasmore.screeninfo.model.*;
 import be.thomasmore.screeninfo.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Stream;
 
 @Controller
 public class ShopController {
@@ -33,13 +28,14 @@ public class ShopController {
     private UserRepository userRepository;
 
 
-    @GetMapping("/ticketlist/{id}")
-    public String ticketList(Model model, @PathVariable Integer id) {
-        Optional<Festival> optionalFestival = festivalRepository.findById(id);
+    @GetMapping("/ticketlist/{festivalid}")
+    public String ticketList(Model model, @PathVariable Integer festivalid) {
+
+        Optional<Festival> optionalFestival = festivalRepository.findById(festivalid);
         Festival festival = optionalFestival.get();
         List<Ticket> ticketList = ticketRepository.findByFestival(festival);
         model.addAttribute("tickets", ticketList);
-        List<ShoppingCart> shoppingCartList = (List<ShoppingCart>) shoppingCartRepository.findAll();
+        List<ShoppingCart> shoppingCartList = (List<ShoppingCart>) shoppingCartRepository.findAllByFinished(false);
         model.addAttribute("cartItems", shoppingCartList);
         return "ticketlist";
     }
@@ -47,7 +43,7 @@ public class ShopController {
     @PostMapping("/addToCart/{id}/{ticketId}")
     public String listProductHandler(@PathVariable Integer id, @PathVariable Integer ticketId, @RequestParam int quantity) {
         Ticket ticket = ticketRepository.findById(ticketId).get();
-        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductId(ticketId);
+        Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductIdAndFinished(ticketId, false);
         if (optionalShoppingCart.isPresent()){
             ShoppingCart shoppingCart = optionalShoppingCart.get();
             shoppingCart.setQuantity(quantity);
@@ -76,9 +72,10 @@ public class ShopController {
     public String checkoutPost(@RequestParam String name, @RequestParam String lastname, @RequestParam String email) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         List<ShoppingCart> shoppingCartList = new ArrayList<>();
-        for (ShoppingCart s : shoppingCartRepository.findAll()) {
-            ShoppingCart newItem = new ShoppingCart(s.getProductId(),s.getProductName(),s.getQuantity(),s.getTotalPrice());
-            shoppingCartList.add(newItem);
+        for (ShoppingCart s : shoppingCartRepository.findAllByFinished(false)) {
+            s.setFinished(true);
+            shoppingCartRepository.save(s);
+            shoppingCartList.add(s);
         }
         Order order;
         String currentUserName;
@@ -90,7 +87,6 @@ public class ShopController {
             order = new Order(shoppingCartList);
         }
         orderRepository.save(order);
-        shoppingCartRepository.deleteAll(shoppingCartRepository.findAll());
         return "confirmation";
     }
 
