@@ -71,4 +71,21 @@ function setWcMarker(map) {
 
 
 
+function setFoodStallMarker(map) {
+
+    for (let i = 0; i<foodstalls.length; i++) {
+        const foodstall = foodstalls[i];
+
+        new google.maps.Marker({
+            position: {lat: foodstall[0], lng: foodstall[1]},
+            map,
+            icon: "/img/shop.png",
+            title: "Food Stall",
+        })
+
+    }
+
+}
+
+
 window.initMap = initMap;
