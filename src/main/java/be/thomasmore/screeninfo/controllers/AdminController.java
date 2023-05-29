@@ -1,7 +1,9 @@
 package be.thomasmore.screeninfo.controllers;
 
+import be.thomasmore.screeninfo.model.EndUser;
 import be.thomasmore.screeninfo.model.Festival;
 import be.thomasmore.screeninfo.repositories.FestivalRepository;
+import be.thomasmore.screeninfo.repositories.UserRepository;
 import be.thomasmore.screeninfo.services.GoogleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +24,10 @@ public class AdminController {
 
     @Autowired
     private FestivalRepository festivalRepository;
-
     @Autowired
     private GoogleService googleService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping({"/festivaleditor", "/festivaleditor/{id}"})
     public String editFestival(Model model, @PathVariable(required = false) Integer id) {
@@ -119,6 +122,18 @@ public class AdminController {
         model.addAttribute("foutief", true);
         model.addAttribute("foutiefText", errorText);
         return "admin/festivalcreator";
+    }
+
+    @GetMapping("/admincontact")
+    public String adminContact() {
+        return "admin/admincontact";
+    }
+    @PostMapping("/admincontact")
+    public String adminContactPost(@RequestParam String emailAddress){
+        EndUser user = userRepository.findById(1).get();
+        user.setEmailAddress(emailAddress);
+        userRepository.save(user);
+        return "admin/admincontact";
     }
 
 

@@ -34,6 +34,10 @@ public class HomeController {
         return "start";
     }
 
+    @GetMapping("/info")
+    public String getInfoPage() {
+        return "info";
+    }
     @GetMapping("/contact")
     public String getContactPagina() {
         return "contact";
