@@ -276,6 +276,11 @@ nav .nav-link:hover {
     text-decoration: none;
 }
 
+.backbutton {
+    color: #53C0D7;
+    text-decoration: none;
+}
+
 
 .Error{
     text-align: center;

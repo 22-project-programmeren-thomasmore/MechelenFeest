@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="text-right">
-                        <a href="#" class="forget-link" th:text="#{login.vergetenPass}">
+                        <a th:href="|@{/reset-password(lang = #{lang.source})}|" class="forget-link" th:text="#{login.vergetenPass}">
                             Forget Password?
                         </a>
                     </div>

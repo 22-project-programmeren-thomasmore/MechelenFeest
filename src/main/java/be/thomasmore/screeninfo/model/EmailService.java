@@ -16,12 +16,31 @@ public class EmailService {
     @Autowired
     private JavaMailSender mailSender;
 
-    public void sendEmail(String to, String subject, String body) {
+    public void sendEmail(String to, String subject, String from, String body) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(to);
         message.setSubject(subject);
+        message.setFrom(from);
         message.setText(body);
 
+        mailSender.send(message);
+    }
+
+    public void sendVerificationEmail(EndUser user, VerificationToken token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmailAddress());
+        message.setSubject("Complete Registration!");
+        message.setText("To confirm your account, please click here : "
+                +"http://localhost:8080/confirm-account/"+token.getToken());
+        mailSender.send(message);
+    }
+
+    public void sendPasswordResetEmail(EndUser user, VerificationToken token) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(user.getEmailAddress());
+        message.setSubject("Reset Password");
+        message.setText("To reset your password, please click here : "
+                +"http://localhost:8080/new-password/"+token.getToken());
         mailSender.send(message);
     }
 
