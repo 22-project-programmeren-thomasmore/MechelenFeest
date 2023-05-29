@@ -5,10 +5,16 @@ function initMap(){
         center:{lat:51.02574,lng:4.47762},
     });
 
+    new google.maps.Marker({
+        position: {lat:51.02562614947713, lng: 4.475430932544553},
+        map,
+        title: "You are here",
+    })
 
 
     setFestivalMarker(map);
     setWcMarker(map);
+    setFoodStallMarker(map);
 }
 
 
