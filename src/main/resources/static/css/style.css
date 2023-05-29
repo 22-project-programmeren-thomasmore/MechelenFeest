@@ -559,7 +559,8 @@ nav .nav-link:hover {
 /*-------------------------------------------------------------------------------------------------------*/
 
 .body-festivaldetail{
-    background: linear-gradient( to top,#FFD31C, deepskyblue );
+    background: var(--secondary);
+    color: white;
 }
 
 .frame {
@@ -573,7 +574,9 @@ nav .nav-link:hover {
     padding: 20px;
     justify-content: center;
 }
-
+.fs-1{
+    font-size: 45px;
+}
 .festival-row, .info {
     display: flex;
     align-items: center;
@@ -586,8 +589,8 @@ nav .nav-link:hover {
 
 .border-right {
 
-    border-bottom: 2px solid #091126;
-    border-radius: 50px;
+    border-bottom: 2px solid white;
+
 }
 
 .return-button {
@@ -595,7 +598,7 @@ nav .nav-link:hover {
     float: left;
     display: inline-block;
     padding: 10px 20px;
-    color: red;
+    color: orange;
     text-decoration: none;
     font-size: 19px;
     transition: background-color 0.3s ease;
@@ -625,5 +628,40 @@ nav .nav-link:hover {
     width: 100%;
 }
 
+.img-festival {
+
+    width: 270px;
+    height: 230px;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button {
+
+    --offset: 10px;
+    --border-size: 4px;
+    margin-top:20px;
+    display: block;
+    position: relative;
+    padding: 1.5em 3em;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #e55743;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 var(--border-size) currentcolor;
 
 
+}

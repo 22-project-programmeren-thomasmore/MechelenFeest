@@ -21,6 +21,8 @@ public class FestivalItem {
 
     private String festivalType;
 
+    private Integer maxCapacity;
+
 
     public FestivalItem(Festival festival){
         id = festival.getId();
@@ -31,6 +33,7 @@ public class FestivalItem {
         mapLat = festival.getMapLat();
         mapLng = festival.getMapLng();
         festivalType = festival.getFestivalType();
+        maxCapacity = festival.getMaxCapacity();
 
         onGoing = Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()).after(festival.getStartDate());
 
@@ -155,5 +158,13 @@ public class FestivalItem {
 
     public void setFestivalType(String festivalType) {
         this.festivalType = festivalType;
+    }
+
+    public Integer getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(Integer maxCapacity) {
+        this.maxCapacity = maxCapacity;
     }
 }
