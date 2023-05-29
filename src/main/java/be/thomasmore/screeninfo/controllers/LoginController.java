@@ -110,8 +110,11 @@ public class LoginController {
     @GetMapping({"/profile", "/user/profile"})
     public String profile(Principal principal,Model model) {
         EndUser user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("user", user);
         List<Order> orders = orderRepository.findAllByUser(user);
-        model.addAttribute("orders", orders);
+        if (!orders.isEmpty()){
+            model.addAttribute("orders", orders);
+        }
         return "user/profile";
     }
 
