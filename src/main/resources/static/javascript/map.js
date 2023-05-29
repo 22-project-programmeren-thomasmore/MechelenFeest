@@ -1,12 +1,14 @@
 function initMap(){
 
     const map = new google.maps.Map(document.getElementById('map'), {
-        zoom:12,
+        zoom:14,
         center:{lat:51.02574,lng:4.47762},
     });
 
-    setMarkerWithIcon(map);
-    setMarkerWithoutIcon(map);
+
+
+    setFestivalMarker(map);
+    setWcMarker(map);
 }
 
 
@@ -20,19 +22,13 @@ const festivals = [
 const toilettes = [
     [51.02064981224487, 4.459200462302486],
     [51.017775719967595, 4.460031431982612],
+    [51.03239321544294, 4.485537780434319],
+    [51.02589677125681, 4.493014860306914],
 ]
 
 
 
-function setMarkerWithIcon(map){
-    const image = {
-        url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-        size: new google.maps.Size(20,32),
-        // origin: new google.maps.Point(0, 0),
-        // anchor: new google.maps.Point(0, 32),
-    };
-
-
+function setFestivalMarker(map){
 
     for (let i = 0; i < festivals.length; i++) {
         const festival = festivals[i];
@@ -41,7 +37,7 @@ function setMarkerWithIcon(map){
         new google.maps.Marker({
             position: { lat: festival[1], lng: festival[2] },
             map,
-            icon: image,
+            icon: "/img/paper-festoon.png",
             title: festival[0],
         });
 
@@ -51,7 +47,7 @@ function setMarkerWithIcon(map){
 }
 
 
-function setMarkerWithoutIcon(map) {
+function setWcMarker(map) {
 
     for (let i = 0; i<toilettes.length; i++) {
         const wc = toilettes[i];
@@ -59,12 +55,14 @@ function setMarkerWithoutIcon(map) {
         new google.maps.Marker({
             position: {lat: wc[0], lng: wc[1]},
             map,
+            icon: "/img/toilet.png",
             title: "WC",
         })
 
     }
 
 }
+
 
 
 window.initMap = initMap;
