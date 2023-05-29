@@ -27,7 +27,7 @@ public class AdminController {
     private GoogleService googleService;
 
     @GetMapping({"/festivaleditor", "/festivaleditor/{id}"})
-    public String editFestival(Model model, @PathVariable(required = false) Integer id, @RequestParam(required = false) File img) {
+    public String editFestival(Model model, @PathVariable(required = false) Integer id) {
         Optional<Festival> optionalFestival;
         if (id != null) {
             optionalFestival = festivalRepository.findById(id);
@@ -53,10 +53,24 @@ public class AdminController {
     }
 
     @PostMapping({"/festivaleditor", "/festivaleditor/{id}"})
-    public String editFestivalPost(@Valid Festival festival){
+    public String editFestivalPost(@Valid Festival festival, @RequestParam(required = false) MultipartFile img){
         if(festival.getEndDate().before(festival.getStartDate())){
             festival.setEndDate(festival.getStartDate());
         }
+        if(img != null){
+            System.out.println("reached");
+            String imgLink = uploadFile(img);
+            if(!imgLink.equals("")){
+                festival.setFestivalImage(imgLink);
+            }
+        }
+        else{// het verwijdert de image link voor 1 of andere rede
+            Optional<Festival> optionalFestival = festivalRepository.findById(festival.id);
+            if(optionalFestival.isPresent()){
+                festival.setFestivalImage(optionalFestival.get().getFestivalImage());
+            }
+        }
+
         festivalRepository.save(festival);
         return "redirect:/festivallijst";
     }
@@ -84,7 +98,7 @@ public class AdminController {
             }
 
             String imageLink = uploadFile(img);
-            if(imageLink == ""){
+            if(imageLink.equals("")){
                 valid = false;
                 errorText += "photo Uploaden is gefaald, probeer later opnieuw";
             }
