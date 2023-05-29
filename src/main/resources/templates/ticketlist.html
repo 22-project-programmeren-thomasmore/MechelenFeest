@@ -60,6 +60,7 @@
             <div class="d-flex flex-column align-items-center text-center">
                 <div class="row border-bottom">
                     <h4 th:text="#{shop.summary}"></h4>
+                    <h5 th:text="#{profile.total} + ': ' + ${total}"></h5>
                 </div>
                 <div th:each="cartItem: ${cartItems}">
                     <span th:text="${cartItem.getProductName()} + ' x ' + ${cartItem.getQuantity()}">Naam</span>

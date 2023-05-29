@@ -26,6 +26,8 @@ public class ShopController {
     private OrderRepository orderRepository;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private EmailService emailService;
 
 
     @GetMapping("/ticketlist/{festivalid}")
@@ -38,6 +40,11 @@ public class ShopController {
         List<ShoppingCart> shoppingCartList = (List<ShoppingCart>) shoppingCartRepository.findAllByFinished(false);
         if (!shoppingCartList.isEmpty()) {
             model.addAttribute("cartItems", shoppingCartList);
+            double total = 0;
+            for (ShoppingCart item : shoppingCartList) {
+                total += item.getTotalPrice();
+            }
+            model.addAttribute("total", total);
         }
         return "ticketlist";
     }
@@ -93,7 +100,18 @@ public class ShopController {
             order = new Order(shoppingCartList);
         }
         orderRepository.save(order);
+        sendConfirmationEmail(order.getCartItems(), order.getTotalOrderPrice(), email);
         return "confirmation";
+    }
+
+    private void sendConfirmationEmail(List<ShoppingCart> shoppingCartList, Double Total, String email) {
+        StringBuilder str = new StringBuilder();
+        str.append("Order Summary:\n");
+        for (ShoppingCart item : shoppingCartList) {
+            str.append(item.getProductName() + " x " + item.getQuantity() + "\n");
+        }
+        str.append("Total: " + Total + "€");
+        emailService.sendConfirmationEmail(email,"MechelenFeest - Order confirmation",str.toString());
     }
 
 
