@@ -19,6 +19,8 @@ public class FestivalItem {
     private float mapLat;
     private float mapLng;
 
+    private String festivalType;
+
 
     public FestivalItem(Festival festival){
         id = festival.getId();
@@ -28,7 +30,7 @@ public class FestivalItem {
         festivalLink = festival.getFestivalLink();
         mapLat = festival.getMapLat();
         mapLng = festival.getMapLng();
-
+        festivalType = festival.getFestivalType();
 
         onGoing = Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()).after(festival.getStartDate());
 
@@ -147,4 +149,11 @@ public class FestivalItem {
         return mapLng;
     }
 
+    public String getFestivalType() {
+        return festivalType;
+    }
+
+    public void setFestivalType(String festivalType) {
+        this.festivalType = festivalType;
+    }
 }
