@@ -28,14 +28,22 @@
             <span class="col text-center" th:text="*{festival.festivalName}">Festival</span>
             <a class="col text-end scrollbutton" th:href="@{|/admin/festivaleditor/*{next}|}"> > </a>
         </div>
-        <form th:action="@{|/admin/festivaleditor/*{id}|}" method="post">
+        <form th:action="@{|/admin/festivaleditor/*{festival.id}|}" method="post" enctype="multipart/form-data">
             <div class="oneinput">
                 <label for="festivalName" class="form-label">Name: </label>
                 <input type="text" id="festivalName" class="form-control mb-2" th:field="*{festival.festivalName}">
             </div>
             <div class="oneinput">
-                <label for="festivalDate" class="form-label">Date: </label>
-                <input type="text" id="festivalDate" class="form-control mb-2" th:field="*{festival.festivalDate}">
+                <label for="startDate" class="form-label">StartDate: </label>
+                <input type="date" id="startDate" class="form-control mb-2" th:field="*{festival.startDate}" min="2023-01-01">
+            </div>
+            <div class="oneinput">
+                <label for="endDate" class="form-label">EndDate: </label>
+                <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}" min="2023-01-01">
+            </div>
+            <div class="oneinput">
+                <label for="maxCapacity" class="form-label">Capacity: </label>
+                <input type="number" id="maxCapacity" class="form-control mb-2" th:field="*{festival.maxCapacity}">
             </div>
             <div class="oneinput">
                 <label for="festivalLink" class="form-label">Link: </label>
@@ -47,13 +55,13 @@
                        th:field="*{festival.backgroundColor}">
             </div>
             <div class="oneinput">
-                <label for="festivalImage" class="form-label">Image: </label>
-                <input type="text" id="festivalImage" class="form-control mb-2" name="festivalImage"
-                       th:field="*{festival.festivalImage}">
+                <label for="img" class="form-label">Change Image: </label>
+                <input type="file" id="img" class="form-control mb-2" name="img" accept="image/*">
             </div>
             <div class="oneinput">
                 <input type="submit" value="Edit" class="btn btn-primary mt-2">
             </div>
+            <input style="visibility: hidden;" type="number" id="population" class="form-control mb-2" th:field="*{festival.population}">
         </form>
     </div>
 </div>

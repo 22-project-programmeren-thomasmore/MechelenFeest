@@ -1,0 +1,86 @@
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/style.css}" href="/css/start.css"/>
+    <link rel="stylesheet" type="text/css" media="all" th:href="@{/css/shop.css}" href="/css/shop.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+          integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="internationalization.js"></script>
+
+
+</head>
+<body>
+<div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
+
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="d-flex flex-column align-items-center text-center">
+                <img class="rounded mt-5" width="150px" th:src="@{|${festival.getFestivalImage()}|}">
+                <h2 class="font-weight-bold row" th:text="${festival.festivalName}">Festival Name</h2>
+                <span class="greyed row" th:text="${festival.startDate} + ' - ' + ${festival.endDate}">Date</span>
+            </div>
+        </div>
+        <div class="col-md-6 border-right p-3 py-5 align-items-center">
+            <div class="d-flex flex-column p-3 py-2">
+                <div class="row border-bottom">
+                    <h4 th:text="#{shop.tickets}"></h4>
+                </div>
+                <div th:each="ticket: ${tickets}">
+                    <form th:action="@{|/addToCart/*{festivalid}/*{ticket.id}|}" method="post">
+                        <div class="row">
+                            <div class="col align-items-start">
+                                <span class="align-self-start" th:text="${ticket.getName()}">Naam</span>
+                            </div>
+                            <div class="col align-items-end">
+                                <span th:text="${ticket.getPrice()} + '€ '">Price</span>
+                                <input type="number" maxlength="3" size="3" min="0" value="0"
+                                       id="quantity" name="quantity">
+                                <button type="submit" size="1" class="btn btn-block text-uppercase align-self-end">Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div th:if="${cartItems}" class=" text-center py-5">
+                    <a class="text-center checkout border rounded" href="/checkout">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <div th:if="${cartItems}" class="col-md-3 shoppingCart rounded">
+            <div class="d-flex flex-column align-items-center text-center">
+                <div class="row border-bottom">
+                    <h4 th:text="#{shop.summary}"></h4>
+                    <h5 th:text="#{profile.total} + ': ' + ${total}"></h5>
+                </div>
+                <div th:each="cartItem: ${cartItems}">
+                    <span th:text="${cartItem.getProductName()} + ' x ' + ${cartItem.getQuantity()}">Naam</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div th:replace="~{/fragments/headerfooter :: footer}">Hier komt de footer</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+        integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.min.js"
+        integrity="sha384-lpyLfhYuitXl2zRZ5Bn2fqnhNAKOAaM/0Kr9laMspuaMiZfGmfwRNFh8HlMy49eQ"
+        crossorigin="anonymous"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</body>
+</html>

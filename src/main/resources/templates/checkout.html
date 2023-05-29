@@ -18,55 +18,27 @@
 <body>
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
-
 <div class="container mb-4 mt-4">
     <div class="border col-md-6 offset-md-3 p-4">
-        <form th:action="@{/admin/festivalcreator}" method="post" enctype="multipart/form-data">
-            <div class="oneinput" th:if="${foutief}">
-                <p class="btn mt-2" style="color: #610000" th:text="${foutiefText}">error</p>
+        <form th:action="@{/checkout}" method="post">
+            <div class="oneinput">
+                <label for="name">Name: </label>
+                <input type="text" id="name" name="name" class="form-control mb-2">
             </div>
             <div class="oneinput">
-                <label for="festivalName" class="form-label">Name: </label>
-                <input type="text" id="festivalName" class="form-control mb-2" th:field="*{festival.festivalName}">
+                <label for="lastname">Lastname: </label>
+                <input type="text" id="lastname" name="lastname" class="form-control mb-2">
             </div>
             <div class="oneinput">
-                <label for="startDate" class="form-label">StartDate: </label>
-                <input type="date" id="startDate" class="form-control mb-2" th:field="*{festival.startDate}" min="2023-01-01">
+                <label for="email">Email Address: </label>
+                <input type="text" id="email" name="email" th:value="${emailAddress !=null}? ${emailAddress} : ''" class="form-control mb-2">
             </div>
-            <div class="oneinput">
-                <label for="endDate" class="form-label">EndDate: </label>
-                <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}" min="2023-01-01">
+            <div class="justify-content-evenly row">
+                <button type="submit" class="btn btn-block text-uppercase align-self-center">Place order</button>
             </div>
-            <div class="oneinput">
-                <label for="maxCapacity" class="form-label">Capacity: </label>
-                <input type="number" id="maxCapacity" class="form-control mb-2" th:field="*{festival.maxCapacity}">
-            </div>
-            <div class="oneinput">
-                <label for="festivalLink" class="form-label">Link: </label>
-                <input type="text" id="festivalLink" class="form-control mb-2" th:field="*{festival.festivalLink}">
-            </div>
-            <div class="oneinput">
-                <label for="backgroundColor" class="form-label">Background Color: </label>
-                <input type="color" id="backgroundColor" class="form-control form-control-color mb-2" th:field="*{festival.backgroundColor}">
-            </div>
-            <div class="oneinput">
-                <label for="img" class="form-label">Image: </label>
-                <input type="file" id="img" class="form-control mb-2" name="img" accept="image/*">
-            </div>
-            <div class="oneinput">
-                <input type="submit" value="create" class="btn btn-primary mt-2">
-            </div>
-      </form>
+        </form>
     </div>
 </div>
-
-
-
-
-
-
-
-
 
 <div th:replace="~{/fragments/headerfooter :: footer}">Hier komt de footer</div>
 

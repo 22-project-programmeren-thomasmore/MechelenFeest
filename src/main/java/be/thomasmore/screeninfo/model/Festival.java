@@ -5,24 +5,30 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.SequenceGenerator;
 
+import java.sql.Date;
+
 @Entity
 public class Festival {
 
-    @SequenceGenerator(name = "FestSeqGen", sequenceName = "FestSeq", initialValue = 5, allocationSize = 1)
+    @SequenceGenerator(name = "FestSeqGen", sequenceName = "FestSeq", initialValue = 6, allocationSize = 1)
     @GeneratedValue(generator = "FestSeqGen")
     @Id
     public Integer id;
     private String festivalName;
     private String festivalImage;
     private String backgroundColor;
-    private String festivalDate;
+    private Date startDate;
+    private Date endDate;
     private String festivalLink;
     private Integer maxCapacity; // dit is voor de barometer
     private Integer population; // dit is voor hoeveel man er momenteel is
-    private boolean onGoing; // om manueel te zeggen dat een event bezig is
+
+    private String festivalType;
 
     public Festival(){
-
+        startDate = new Date(123,00,01);
+        endDate = new Date(123,00,01);
+        festivalType = "Music";
     }
 
     public Integer getId() {
@@ -49,12 +55,20 @@ public class Festival {
         this.festivalImage = festivalImage;
     }
 
-    public String getFestivalDate() {
-        return festivalDate;
+    public Date getStartDate() {
+        return startDate;
     }
 
-    public void setFestivalDate(String festivalDate) {
-        this.festivalDate = festivalDate;
+    public void setStartDate(Date startDate) {
+        this.startDate = startDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
     }
 
     public String getBackgroundColor() {
@@ -89,11 +103,13 @@ public class Festival {
         this.population = population;
     }
 
-    public boolean isOnGoing() {
-        return onGoing;
+    public String getFestivalType() {
+        return festivalType;
     }
 
-    public void setOnGoing(boolean onGoing) {
-        this.onGoing = onGoing;
+    public void setFestivalType(String festivalType) {
+        this.festivalType = festivalType;
     }
+
 }
+
