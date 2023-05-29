@@ -21,24 +21,52 @@
 <body>
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
-
-<div class="container mb-4 mt-4">
-    <div class="border col-md-6 offset-md-3 p-4">
-        <div th:each="ticket: ${tickets}">
-            <form th:action="@{|/addToCart/*{festivalid}/*{ticket.id}|}" method="post">
-                <span th:text="${ticket.getName()}">Naam</span>
-                <span th:text="${ticket.getPrice()}">Naam</span>
-                <input type="number" min="0" value="0" id="quantity" name="quantity">
-                <button type="submit" class="btn btn-block text-uppercase align-self-center">Add to Cart</button>
-            </form>
+<div class="container rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="d-flex flex-column align-items-center text-center">
+                <img class="rounded mt-5" width="150px" th:src="@{|${festival.getFestivalImage()}|}">
+                <h2 class="font-weight-bold row" th:text="${festival.festivalName}">Festival Name</h2>
+                <span class="greyed row" th:text="${festival.startDate} + ' - ' + ${festival.endDate}">Date</span>
+            </div>
         </div>
-        <a class="checkout align-self-center" href="/checkout">Checkout</a>
+        <div class="col-md-6 border-right p-3 py-5 align-items-center">
+            <div class="d-flex flex-column p-3 py-2">
+                <div class="row border-bottom">
+                    <h4 th:text="#{shop.tickets}"></h4>
+                </div>
+                <div th:each="ticket: ${tickets}">
+                    <form th:action="@{|/addToCart/*{festivalid}/*{ticket.id}|}" method="post">
+                        <div class="row">
+                            <div class="col align-items-start">
+                                <span class="align-self-start" th:text="${ticket.getName()}">Naam</span>
+                            </div>
+                            <div class="col align-items-end">
+                                <span th:text="${ticket.getPrice()} + '€ '">Price</span>
+                                <input type="number" maxlength="3" size="3" min="0" value="0"
+                                       id="quantity" name="quantity">
+                                <button type="submit" size="1" class="btn btn-block text-uppercase align-self-end">Add
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div th:if="${cartItems}" class=" text-center py-5">
+                    <a class="text-center checkout border rounded" href="/checkout">Checkout</a>
+                </div>
+            </div>
+        </div>
+        <div th:if="${cartItems}" class="col-md-3 shoppingCart rounded">
+            <div class="d-flex flex-column align-items-center text-center">
+                <div class="row border-bottom">
+                    <h4 th:text="#{shop.summary}"></h4>
+                </div>
+                <div th:each="cartItem: ${cartItems}">
+                    <span th:text="${cartItem.getProductName()} + ' x ' + ${cartItem.getQuantity()}">Naam</span>
+                </div>
+            </div>
+        </div>
     </div>
-    <aside class="shoppingCart">
-        <div th:each="cartItem: ${cartItems}">
-            <span th:text="${cartItem.getProductName()} + ' x ' + ${cartItem.getQuantity()}">Naam</span>
-        </div>
-    </aside>
 </div>
 
 

@@ -30,13 +30,15 @@ public class ShopController {
 
     @GetMapping("/ticketlist/{festivalid}")
     public String ticketList(Model model, @PathVariable Integer festivalid) {
-
         Optional<Festival> optionalFestival = festivalRepository.findById(festivalid);
         Festival festival = optionalFestival.get();
+        model.addAttribute("festival", festival);
         List<Ticket> ticketList = ticketRepository.findByFestival(festival);
         model.addAttribute("tickets", ticketList);
         List<ShoppingCart> shoppingCartList = (List<ShoppingCart>) shoppingCartRepository.findAllByFinished(false);
-        model.addAttribute("cartItems", shoppingCartList);
+        if (!shoppingCartList.isEmpty()) {
+            model.addAttribute("cartItems", shoppingCartList);
+        }
         return "ticketlist";
     }
 
@@ -44,16 +46,20 @@ public class ShopController {
     public String listProductHandler(@PathVariable Integer id, @PathVariable Integer ticketId, @RequestParam int quantity) {
         Ticket ticket = ticketRepository.findById(ticketId).get();
         Optional<ShoppingCart> optionalShoppingCart = shoppingCartRepository.findByProductIdAndFinished(ticketId, false);
-        if (optionalShoppingCart.isPresent()){
+        if (optionalShoppingCart.isPresent()) {
             ShoppingCart shoppingCart = optionalShoppingCart.get();
-            shoppingCart.setQuantity(quantity);
+            if (quantity == 0) {
+                shoppingCartRepository.delete(shoppingCart);
+            } else {
+                shoppingCart.setQuantity(quantity);
                 shoppingCartRepository.save(shoppingCart);
-        } else {
-                ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(), ticket.getName(), quantity, ticket.getPrice());
-                shoppingCartRepository.save(shoppingCart);
+            }
+        } else if (quantity != 0) {
+            ShoppingCart shoppingCart = new ShoppingCart(ticket.getId(), ticket.getName(), quantity, ticket.getPrice());
+            shoppingCartRepository.save(shoppingCart);
         }
 
-        return "redirect:/ticketlist/"+id;
+        return "redirect:/ticketlist/" + id;
     }
 
     @GetMapping("/checkout")

@@ -1,11 +1,6 @@
 
 .shoppingCart {
-    background: red;
-}
-
-aside {
-    float: right;
-    background-color: red;
+    background: lightgray;
 }
 
 .checkout {
@@ -13,4 +8,9 @@ aside {
     color: black;
     align-content: center;
     border: black;
+    background: #FFD31C;
+}
+
+input[type='number']{
+    width: 45px;
 }
