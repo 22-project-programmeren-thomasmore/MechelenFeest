@@ -561,6 +561,7 @@ nav .nav-link:hover {
 .body-festivaldetail{
     background: var(--secondary);
     color: white;
+    text-transform: uppercase;
 }
 
 .frame {

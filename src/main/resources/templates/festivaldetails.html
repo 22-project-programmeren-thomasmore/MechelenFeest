@@ -21,10 +21,10 @@
 
 <div th:replace="~{/fragments/headerfooter :: header}">Hier komt de header</div>
 
-<div class="body-festivaldetail">
+<div class="body-festivaldetail" >
     <div class="row">
         <div class="col-md-12 mx-auto text-center">
-            <div class="festival-row festival-name border-right festival-font" th:if="${festival}">
+            <div class="festival-row festival-name border-right text-uppercase" th:if="${festival}">
                 <strong>
                     <span th:text="${festival.festivalName}"></span>
                 </strong>
