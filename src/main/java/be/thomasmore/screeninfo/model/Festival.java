@@ -10,7 +10,7 @@ import java.sql.Date;
 @Entity
 public class Festival {
 
-    @SequenceGenerator(name = "FestSeqGen", sequenceName = "FestSeq", initialValue = 5, allocationSize = 1)
+    @SequenceGenerator(name = "FestSeqGen", sequenceName = "FestSeq", initialValue = 6, allocationSize = 1)
     @GeneratedValue(generator = "FestSeqGen")
     @Id
     public Integer id;

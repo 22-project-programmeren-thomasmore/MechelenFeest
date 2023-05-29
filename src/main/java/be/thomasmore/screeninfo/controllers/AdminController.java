@@ -116,8 +116,9 @@ public class AdminController {
             try (FileOutputStream fos = new FileOutputStream(newFile)) {
                 fos.write(file.getBytes());
             }
-
-            return googleService.toFirebase(newFile);
+            String imgLink = googleService.toFirebase(newFile);
+            newFile.delete();
+            return imgLink;
         } catch (Exception e) {
             System.out.println("ERROR: Niet kunnen uploaden : " + e.getMessage());
             return "";
