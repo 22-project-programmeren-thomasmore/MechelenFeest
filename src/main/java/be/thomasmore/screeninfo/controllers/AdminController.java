@@ -69,11 +69,10 @@ public class AdminController {
     }
 
     @PostMapping("/festivalcreator")
-    public String addFestivalPost(Model model, @Valid Festival festival, @RequestParam(required = false) MultipartFile img, BindingResult bindingResult) {
+    public String addFestivalPost(Model model, @Valid Festival festival, @RequestParam(required = false) MultipartFile img) {
         boolean valid = true;
         String errorText = "";
-        if(festival.getFestivalName() == null || festival.getFestivalName().trim() == ""
-                || festival.getFestivalImage() == null || festival.getFestivalImage().trim() == ""
+        if(festival.getFestivalName() == null || festival.getFestivalName().trim().equals("")
                 || festival.getMaxCapacity() == null || festival.getMaxCapacity() <= 0
                 || img == null){
             valid = false;

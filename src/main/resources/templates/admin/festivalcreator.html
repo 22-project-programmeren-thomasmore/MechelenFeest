@@ -23,7 +23,7 @@
     <div class="border col-md-6 offset-md-3 p-4">
         <form th:action="@{/admin/festivalcreator}" method="post" enctype="multipart/form-data">
             <div class="oneinput" th:if="${foutief}">
-                <p class="btn mt-2" style="color: #610000" th:text="${foutiefText}">gelieven alle velden in te vullen</p>
+                <p class="btn mt-2" style="color: #610000" th:text="${foutiefText}">error</p>
             </div>
             <div class="oneinput">
                 <label for="festivalName" class="form-label">Name: </label>
@@ -50,8 +50,8 @@
                 <input type="color" id="backgroundColor" class="form-control form-control-color mb-2" th:field="*{festival.backgroundColor}">
             </div>
             <div class="oneinput">
-                <label for="festivalImage" class="form-label">Image: </label>
-                <input type="file" id="festivalImage" class="form-control mb-2" name="img" accept="image/*" th:field="*{img}">
+                <label for="img" class="form-label">Image: </label>
+                <input type="file" id="img" class="form-control mb-2" name="img" accept="image/*">
             </div>
             <div class="oneinput">
                 <input type="submit" value="create" class="btn btn-primary mt-2">
