@@ -58,7 +58,8 @@ public class ShopController {
             if (quantity == 0) {
                 shoppingCartRepository.delete(shoppingCart);
             } else {
-                shoppingCart.setQuantity(quantity);
+                shoppingCartRepository.delete(shoppingCart);
+                shoppingCart = new ShoppingCart(shoppingCart.getProductId(),shoppingCart.getProductName(),quantity,shoppingCart.getTotalPrice());
                 shoppingCartRepository.save(shoppingCart);
             }
         } else if (quantity != 0) {
