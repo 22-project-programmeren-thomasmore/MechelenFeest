@@ -495,6 +495,14 @@ nav .nav-link:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 150px;
+    margin-top: 75px;
     margin-bottom: 150px;
+}
+
+
+.mapinfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 75px;
 }
