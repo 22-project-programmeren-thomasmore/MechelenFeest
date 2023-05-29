@@ -2,7 +2,9 @@ package be.thomasmore.screeninfo.controllers;
 
 import be.thomasmore.screeninfo.model.EndUser;
 import be.thomasmore.screeninfo.model.Festival;
+import be.thomasmore.screeninfo.model.Ticket;
 import be.thomasmore.screeninfo.repositories.FestivalRepository;
+import be.thomasmore.screeninfo.repositories.TicketRepository;
 import be.thomasmore.screeninfo.repositories.UserRepository;
 import be.thomasmore.screeninfo.services.GoogleService;
 import jakarta.validation.Valid;
@@ -28,16 +30,19 @@ public class AdminController {
     private GoogleService googleService;
     @Autowired
     private UserRepository userRepository;
+    @Autowired
+    private TicketRepository ticketRepository;
 
     @GetMapping({"/festivaleditor", "/festivaleditor/{id}"})
     public String editFestival(Model model, @PathVariable(required = false) Integer id) {
-        Optional<Festival> optionalFestival;
-        if (id != null) {
-            optionalFestival = festivalRepository.findById(id);
+        Optional<Festival> optionalFestival = festivalRepository.findById(id);;
+        Festival festival;
+        if (optionalFestival.isPresent()) {
+            festival = optionalFestival.get();
         } else {
             optionalFestival = festivalRepository.findFirstByOrderByIdAsc();
+            festival = optionalFestival.get();
         }
-        Festival festival = optionalFestival.get();
         model.addAttribute("festival", festival);
         Optional<Festival> optionalPrevFestival = festivalRepository.findFirstByIdLessThanOrderByIdDesc(festival.getId());
         Optional<Festival> optionalNextFestival = festivalRepository.findFirstByIdGreaterThanOrderById(festival.getId());
@@ -76,6 +81,16 @@ public class AdminController {
 
         festivalRepository.save(festival);
         return "redirect:/festivallijst";
+    }
+    @PostMapping("/addTicket/{id}")
+    public String addTicketPost(@PathVariable Integer id, @RequestParam String ticketName, @RequestParam Double price ){
+        Optional<Festival> optionalFestival = festivalRepository.findById(id);
+        if (optionalFestival.isPresent()){
+            Festival festival = optionalFestival.get();
+            Ticket ticket = new Ticket(ticketName, price, festival);
+            ticketRepository.save(ticket);
+        }
+        return "redirect:/admin/festivaleditor/"+id;
     }
 
     @GetMapping("/festivalcreator")
