@@ -44,3 +44,18 @@ INSERT INTO "PUBLIC"."FESTIVAL" (ID,BACKGROUND_COLOR, START_DATE ,END_DATE ,FEST
                                     (3, '#253679', '2023-08-25', '2023-08-27', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock-Aikon-Producties-3-scaled.jpg', 'https://dezomerisvanmechelen.be/event/maanrock/','Maanrock','Music',1000,0),
                                     (4, '#d0422a', '2023-07-20', '2023-08-06', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220828_13_35_16_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/mechelen-beach/','Mechelen Beach','Sport',1000,0),
                                     (5, '#9b51e0', '2023-07-01', '2023-09-30', 'https://dezomerisvanmechelen.be/wp-content/uploads/2023/04/Maanrock_AIKON_20220826_19_36_27_Zonder-logo_low-scaled.jpg', 'https://dezomerisvanmechelen.be/event/hap-food-festival/','Hap Food Festival','Culture',1000,0);
+
+INSERT INTO TICKET
+(ID, name, price, festival_Id)
+VALUES
+    (1, 'Dagticket vrijdag', 22.50 , 1);
+
+INSERT INTO TICKET
+(ID, name, price, festival_Id)
+VALUES
+    (2, 'Dagticket zaterdag', 22.50 , 1);
+
+INSERT INTO TICKET
+(ID, name, price, festival_Id)
+VALUES
+    (3, 'Combi ticket', 37.50 , 1);

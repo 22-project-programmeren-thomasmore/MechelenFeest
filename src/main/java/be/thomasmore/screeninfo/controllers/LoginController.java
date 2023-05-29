@@ -1,8 +1,7 @@
 package be.thomasmore.screeninfo.controllers;
 
-import be.thomasmore.screeninfo.model.EmailService;
-import be.thomasmore.screeninfo.model.EndUser;
-import be.thomasmore.screeninfo.model.VerificationToken;
+import be.thomasmore.screeninfo.model.*;
+import be.thomasmore.screeninfo.repositories.OrderRepository;
 import be.thomasmore.screeninfo.repositories.UserRepository;
 import be.thomasmore.screeninfo.repositories.VerificationTokenRepository;
 import jakarta.mail.MessagingException;
@@ -21,14 +20,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class LoginController {
     @Autowired
     private UserRepository userRepository;
-
     @Autowired
     private VerificationTokenRepository verificationTokenRepository;
+    @Autowired
+    private OrderRepository orderRepository;
     @Autowired
     private PasswordEncoder encoder;
     @Autowired
@@ -102,6 +105,17 @@ public class LoginController {
             sc.setAuthentication(null);
             logger.error("Failure in autoLogin", e);
         }
+    }
+
+    @GetMapping({"/profile", "/user/profile"})
+    public String profile(Principal principal,Model model) {
+        EndUser user = userRepository.findByUsername(principal.getName());
+        model.addAttribute("user", user);
+        List<Order> orders = orderRepository.findAllByUser(user);
+        if (!orders.isEmpty()){
+            model.addAttribute("orders", orders);
+        }
+        return "user/profile";
     }
 
     @GetMapping("/login-error")

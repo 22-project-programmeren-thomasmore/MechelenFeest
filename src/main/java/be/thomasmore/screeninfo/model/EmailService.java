@@ -26,6 +26,15 @@ public class EmailService {
         mailSender.send(message);
     }
 
+    public void sendConfirmationEmail(String to, String subject, String body) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(body);
+
+        mailSender.send(message);
+    }
+
     public void sendVerificationEmail(EndUser user, VerificationToken token) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(user.getEmailAddress());

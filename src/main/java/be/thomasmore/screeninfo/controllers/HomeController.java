@@ -85,11 +85,11 @@ public class HomeController {
         Optional<EndUser> foundUser = userRepository.findById(token.getUser().getId());
         EndUser user = foundUser.get();
 
-            if (newPassword.equals(confirmNewPassword)){
-                String newEncodedPassword = encoder.encode(confirmNewPassword.trim());
-                user.setPassword(newEncodedPassword);
-                userRepository.save(user);
-            }
+        if (newPassword.equals(confirmNewPassword)){
+            String newEncodedPassword = encoder.encode(confirmNewPassword.trim());
+            user.setPassword(newEncodedPassword);
+            userRepository.save(user);
+        }
 
         return "redirect:/new-password-succes";
     }
