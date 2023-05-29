@@ -361,12 +361,12 @@ nav .nav-link:hover {
     border-radius: 1rem;
 }
 
-.map, .form {
+.map-contact, .form {
     width: 50%;
     height: 100%;
 }
 
-.map iframe {
+.map-contact iframe {
     width: 100%;
     height: 100%;
 }
@@ -423,7 +423,7 @@ nav .nav-link:hover {
         display: none;
 
     }
-    .map , .map iframe {
+    .map-contact , .map-contact iframe {
         display: none;
     }
 
@@ -482,4 +482,27 @@ nav .nav-link:hover {
         margin: auto;
     }
 
+}
+
+
+#map{
+    height: 500px;
+    width: 600px;
+
+}
+
+.map2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 75px;
+    margin-bottom: 150px;
+}
+
+
+.mapinfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 75px;
 }
