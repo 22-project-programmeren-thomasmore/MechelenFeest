@@ -66,22 +66,29 @@ public class AdminController {
             festival.setEndDate(festival.getStartDate());
         }
         if(img != null){
-            System.out.println("reached");
             String imgLink = uploadFile(img);
             if(!imgLink.equals("")){
                 festival.setFestivalImage(imgLink);
             }
-        }
-        else{// het verwijdert de image link voor 1 of andere rede
-            Optional<Festival> optionalFestival = festivalRepository.findById(festival.id);
-            if(optionalFestival.isPresent()){
-                festival.setFestivalImage(optionalFestival.get().getFestivalImage());
+            else{
+                festival = resetFestivalImage(festival);
             }
+        }
+        else{
+            festival = resetFestivalImage(festival);
         }
 
         festivalRepository.save(festival);
         return "redirect:/festivallijst";
     }
+    private Festival resetFestivalImage(Festival festival){ // het verwijdert de image link voor 1 of andere rede
+        Optional<Festival> optionalFestival = festivalRepository.findById(festival.id);
+        if(optionalFestival.isPresent()){
+            festival.setFestivalImage(optionalFestival.get().getFestivalImage());
+        }
+        return  festival;
+    }
+
     @PostMapping("/addTicket/{id}")
     public String addTicketPost(@PathVariable Integer id, @RequestParam String ticketName, @RequestParam Double price ){
         Optional<Festival> optionalFestival = festivalRepository.findById(id);
