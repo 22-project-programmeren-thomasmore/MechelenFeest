@@ -185,18 +185,13 @@ nav .navtext:hover {
     transition: all 0.25s ease;
 }
 
+
 .festival-date {
-    padding-bottom: 1.25em;
+    padding-bottom: 1em;
     color: #FFD31C;
-    font-size: 1.5em;
-    font-weight: 900;
-    letter-spacing: 0.08em;
-}
-.festival:nth-child(4n+4) .festival-date {
-    font-size: 1.1em;
-    color: #FFD31C;
-    font-weight: 700;
-    letter-spacing: 0;
+    font-size: 1em;
+    font-weight: 650;
+    letter-spacing: 0em;
 }
 
 
