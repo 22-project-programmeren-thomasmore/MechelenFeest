@@ -42,7 +42,7 @@
                         </ul>
 
                     <li class="nav-item">
-                        <a class="nav-link text-navtext navtext mx-3" href="/contact" th:text="#{header.contact}">Contact</a>
+                        <a class="nav-link text-navtext navtext mx-3" th:href="|@{/contact(lang = #{lang.source})}|" th:text="#{header.contact}">Contact</a>
                     </li>
                     <li class="nav-item dropdown" sec:authorize="hasAuthority('ROLE_ADMIN')">
                         <a class="nav-link dropdown-toggle navtext mx-3" href="#" role="button"
@@ -50,9 +50,9 @@
                             Admin
                         </a>
                         <ul class="dropdown-menu" style="background-color: #FFD31C;">
-                            <li><a class="dropdown-item text-center" th:href="@{/admin/festivaleditor}">Edit Event</a></li>
-                            <li><a class="dropdown-item text-center" th:href="@{/admin/festivalcreator}">Add Event</a></li>
-                            <li><a class="dropdown-item text-center" th:href="@{/admin/admincontact}">Edit Contact</a></li>
+                            <li><a class="dropdown-item text-center" th:href="|@{/admin/festivaleditor(lang = #{lang.source})}|">Edit Event</a></li>
+                            <li><a class="dropdown-item text-center" th:href="|@{/admin/festivalcreator(lang = #{lang.source})}|">Add Event</a></li>
+                            <li><a class="dropdown-item text-center" th:href="|@{/admin/admincontact(lang = #{lang.source})}|">Edit Contact</a></li>
                         </ul>
                     </li>
                     <li class="nav-item">

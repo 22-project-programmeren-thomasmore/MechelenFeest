@@ -26,12 +26,12 @@
   </div>
 
   <div class="form">
-    <h1>Contact Us</h1>
+    <h1  th:text="#{contact.title}">Contact Us</h1>
     <form th:action="@{/contact}" method="post">
-      <input type="text" id="name" name="name" placeholder="Name">
-      <input type="email" id="email" name="email" placeholder="Email">
-      <textarea id="message" name="message" placeholder="Message"></textarea>
-      <button type="submit">Submit</button>
+      <input type="text" id="name" name="name" th:placeholder="#{name}">
+      <input type="email" id="email" name="email" th:placeholder="#{email}">
+      <textarea id="message" name="message" th:placeholder="#{contact.message}"></textarea>
+      <button type="submit" th:text="#{submit}">Submit</button>
     </form>
   </div>
 
