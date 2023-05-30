@@ -40,7 +40,7 @@ public class EmailService {
         message.setTo(user.getEmailAddress());
         message.setSubject("Complete Registration!");
         message.setText("To confirm your account, please click here : "
-                +"http://localhost:8080/confirm-account/"+token.getToken());
+                +"https://mechelenfeest.onrender.com/confirm-account/"+token.getToken());
         mailSender.send(message);
     }
 
@@ -49,7 +49,7 @@ public class EmailService {
         message.setTo(user.getEmailAddress());
         message.setSubject("Reset Password");
         message.setText("To reset your password, please click here : "
-                +"http://localhost:8080/new-password/"+token.getToken());
+                +"https://mechelenfeest.onrender.com/new-password/"+token.getToken());
         mailSender.send(message);
     }
 
