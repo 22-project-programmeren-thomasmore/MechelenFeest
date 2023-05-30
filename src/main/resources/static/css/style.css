@@ -415,12 +415,12 @@ nav .nav-link:hover {
     border-radius: 1rem;
 }
 
-.map, .form {
+.map-contact, .form {
     width: 50%;
     height: 100%;
 }
 
-.map iframe {
+.map-contact iframe {
     width: 100%;
     height: 100%;
 }
@@ -477,7 +477,7 @@ nav .nav-link:hover {
         display: none;
 
     }
-    .map , .map iframe {
+    .map-contact , .map-contact iframe {
         display: none;
     }
 
