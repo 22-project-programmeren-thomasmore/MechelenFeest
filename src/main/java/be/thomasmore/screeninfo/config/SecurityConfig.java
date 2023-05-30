@@ -26,7 +26,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests().requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN").anyRequest().permitAll();
         http.formLogin().loginPage("/user/login");
-        http.logout().logoutUrl("/user/logout");
+        http.logout().logoutUrl("/user/logout")
+                .logoutSuccessUrl("/");
+
         http.securityContext((securityContext) -> securityContext.requireExplicitSave(false));
         return http.build();
     }

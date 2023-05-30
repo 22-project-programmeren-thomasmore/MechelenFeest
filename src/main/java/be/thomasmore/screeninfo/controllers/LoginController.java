@@ -54,7 +54,7 @@ public class LoginController {
     @GetMapping({"/logout", "/user/logout"})
     public String logout(Principal principal) {
         if (principal != null) return "redirect:/festivallijst";
-        return "user/signup";
+        return "user/logout";
     }
     @PostMapping({"/signup", "/user/signup"})
     public String registerPost(Principal principal, @RequestParam String emailAddress, @RequestParam String userName, @RequestParam String password, @RequestParam(required = false, defaultValue = "false") boolean getUpdates,@RequestParam(required = false, defaultValue = "nl") String language) throws MessagingException {
