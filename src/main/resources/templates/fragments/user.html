@@ -19,11 +19,18 @@
     </li>
 </div>
 <div sec:authorize="isAuthenticated()" th:fragment="logoutmenu">
-    <div class="nav-link text-navtext navtext ">
-        <form th:action="@{/user/logout}" method="post">
-            <button class="signup-button"  style="color: #FFD31C;" th:text="#{login.logout}">Logout</button>
-        </form>
-    </div>
+    <li>
+        <a class="nav-link text-navtext navtext mx-3" th:href="|@{/profile(lang = #{lang.source})}|">
+            <span class="login-signup" sec:authentication="name"></span>
+        </a>
+    </li>
+    <li>
+        <div class="nav-link text-navtext navtext mx-3">
+            <form th:action="@{/user/logout}" method="post">
+                <button class="logout text-navtext navtext" type="submit"  th:text="#{login.logout}">Logout</button>
+            </form>
+        </div>
+    </li>
 </div>
 </body>
 </html>

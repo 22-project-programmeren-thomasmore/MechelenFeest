@@ -28,7 +28,7 @@
             <span class="col text-center" th:text="*{festival.festivalName}">Festival</span>
             <a class="col text-end scrollbutton" th:href="@{|/admin/festivaleditor/*{next}|}"> > </a>
         </div>
-        <form th:action="@{|/admin/festivaleditor/*{festival.id}|}" method="post">
+        <form th:action="@{|/admin/festivaleditor/*{festival.id}|}" method="post" enctype="multipart/form-data">
             <div class="oneinput">
                 <label for="festivalName" class="form-label">Name: </label>
                 <input type="text" id="festivalName" class="form-control mb-2" th:field="*{festival.festivalName}">
@@ -55,14 +55,27 @@
                        th:field="*{festival.backgroundColor}">
             </div>
             <div class="oneinput">
-                <label for="festivalImage" class="form-label">Image: </label>
-                <input type="text" id="festivalImage" class="form-control mb-2" name="festivalImage"
-                       th:field="*{festival.festivalImage}">
+                <label for="img" class="form-label">Change Image: </label>
+                <input type="file" id="img" class="form-control mb-2" name="img" accept="image/*">
             </div>
             <div class="oneinput">
                 <input type="submit" value="Edit" class="btn btn-primary mt-2">
             </div>
             <input style="visibility: hidden;" type="number" id="population" class="form-control mb-2" th:field="*{festival.population}">
+        </form>
+        <h4>Add Ticket</h4>
+        <form th:action="@{|/admin/addTicket/*{festival.id}|}" method="post" enctype="multipart/form-data">
+            <div class="oneinput">
+                <label for="ticketName" class="form-label">Name: </label>
+                <input type="text" id="ticketName" name="ticketName" class="form-control mb-2">
+            </div>
+            <div class="oneinput">
+                <label for="price" class="form-label">Price: </label>
+                <input type="number" size="4" step="0.01" id="price" name="price" class="form-control mb-2">
+            </div>
+            <div class="oneinput">
+                <input type="submit" value="Add" class="btn btn-primary mt-2">
+            </div>
         </form>
     </div>
 </div>

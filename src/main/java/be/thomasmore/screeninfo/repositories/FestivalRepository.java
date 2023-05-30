@@ -14,6 +14,7 @@ public interface FestivalRepository extends CrudRepository<Festival,Integer> {
     Optional<Festival> findFirstByIdLessThanOrderByIdDesc(int id);
     Optional<Festival> findFirstByIdGreaterThanOrderById(int id);
     List<Festival> findAllByOrderByStartDateAsc();
+    List<Festival> findAllBy();
 
 
     @Query("SELECT a FROM Festival a " +

@@ -1,0 +1,16 @@
+
+.shoppingCart {
+    background: lightgray;
+}
+
+.checkout {
+    text-decoration: none;
+    color: black;
+    align-content: center;
+    border: black;
+    background: #FFD31C;
+}
+
+input[type='number']{
+    width: 45px;
+}

@@ -64,4 +64,8 @@ public class MapController {
         return "map";
     }
 
+    @GetMapping("/map2")
+    public String map2(){
+        return "map2";
+    }
 }
