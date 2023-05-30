@@ -5,7 +5,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 
 public class FestivalItem {
-    private Integer id;
+    public Integer id;
     private String festivalName;
     private String festivalImage;
     private String backgroundColor;
@@ -15,6 +15,14 @@ public class FestivalItem {
 
     private String busyness; // om op voorant te berekenen hoe druk he is
 
+    // voor positie op map
+    private float mapLat;
+    private float mapLng;
+
+    private String festivalType;
+
+    private Integer maxCapacity;
+
 
     public FestivalItem(Festival festival){
         id = festival.getId();
@@ -22,6 +30,10 @@ public class FestivalItem {
         festivalImage = festival.getFestivalImage();
         backgroundColor = festival.getBackgroundColor();
         festivalLink = festival.getFestivalLink();
+        mapLat = festival.getMapLat();
+        mapLng = festival.getMapLng();
+        festivalType = festival.getFestivalType();
+        maxCapacity = festival.getMaxCapacity();
 
         onGoing = Date.from(java.time.LocalDateTime.now().atZone(ZoneId.systemDefault()).toInstant()).after(festival.getStartDate());
 
@@ -30,13 +42,13 @@ public class FestivalItem {
         LocalDate startDate = festival.getStartDate().toLocalDate();
         LocalDate endDate = festival.getEndDate().toLocalDate();
         if(startDate.getYear() != endDate.getYear()){
-            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue()+"-"+startDate.getYear() + " - ";
+            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue()+"-"+startDate.getYear() + " / ";
         }
         else if(startDate.getMonth() != endDate.getMonth()){
-            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue() + " - ";
+            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue() + " / ";
         }
         else if(startDate.getDayOfMonth() != endDate.getDayOfMonth()){
-            date = startDate.getDayOfMonth() + " - ";
+            date = startDate.getDayOfMonth() + " / ";
         }
             date += endDate.getDayOfMonth()+"-"+endDate.getMonthValue()+"-"+endDate.getYear();
 
@@ -61,6 +73,13 @@ public class FestivalItem {
 
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
     public String getFestivalName() {
         return festivalName;
     }
@@ -117,11 +136,35 @@ public class FestivalItem {
         this.busyness = busyness;
     }
 
-    public Integer getId() {
-        return id;
+    public void setMapLat(float mapLat) {
+        this.mapLat = mapLat;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setMapLng(float mapLng) {
+        this.mapLng = mapLng;
+    }
+
+    public float getMapLat() {
+        return mapLat;
+    }
+
+    public float getMapLng() {
+        return mapLng;
+    }
+
+    public String getFestivalType() {
+        return festivalType;
+    }
+
+    public void setFestivalType(String festivalType) {
+        this.festivalType = festivalType;
+    }
+
+    public Integer getMaxCapacity() {
+        return maxCapacity;
+    }
+
+    public void setMaxCapacity(Integer maxCapacity) {
+        this.maxCapacity = maxCapacity;
     }
 }

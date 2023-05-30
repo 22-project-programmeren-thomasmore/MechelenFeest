@@ -122,11 +122,6 @@ public class LoginController {
         return "user/profile";
     }
 
-    @GetMapping("/login-error")
-    public String loginError(Model model) {
-        return "loginError";
-    }
-
     private String checkLanguageCode(String language){
         if(language.trim().equals(""))
             return "nl";

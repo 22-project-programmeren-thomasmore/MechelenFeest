@@ -158,9 +158,9 @@ nav .navtext:hover {
      transition: all .6s;
  }
 
- /*.events {*/
- /*    display: inline-block;*/
- /*}*/
+ .events {
+     display: inline-block;
+ }
 
 .festival {
     position: relative;
@@ -186,11 +186,17 @@ nav .navtext:hover {
 }
 
 .festival-date {
-    padding-bottom: 1em;
+    padding-bottom: 1.25em;
     color: #FFD31C;
-    font-size: 1em;
-    font-weight: 650;
-    letter-spacing: 0em;
+    font-size: 1.5em;
+    font-weight: 900;
+    letter-spacing: 0.08em;
+}
+.festival:nth-child(4n+4) .festival-date {
+    font-size: 1.1em;
+    color: #FFD31C;
+    font-weight: 700;
+    letter-spacing: 0;
 }
 
 
@@ -401,11 +407,6 @@ nav .navtext:hover {
     border-radius: 10px;
 }
 
-.backbutton {
-    color: #53C0D7;
-    text-decoration: none;
-}
-
 
 .Error{
     text-align: center;
@@ -548,7 +549,6 @@ nav .navtext:hover {
     cursor: pointer;
 }
 
-
 @media only screen and (max-width: 690px) {
     .form::before{
         display: none;
@@ -636,4 +636,117 @@ nav .navtext:hover {
     align-items: center;
     justify-content: center;
     margin-top: 75px;
+}
+
+/*-------------------------------------------------------------------------------------------------------*/
+/*   Detail Pagina Stijl Start   */
+/*-------------------------------------------------------------------------------------------------------*/
+
+.body-festivaldetail{
+    background: var(--secondary);
+    color: white;
+    text-transform: uppercase;
+}
+
+.frame {
+    width: 80%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.festival-row {
+
+    padding: 20px;
+    justify-content: center;
+}
+.fs-1{
+    font-size: 45px;
+}
+.festival-row, .info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.festival-row i, .info i {
+    margin-right: 3px;
+}
+
+.border-right {
+
+    border-bottom: 2px solid white;
+
+}
+
+.return-button {
+    margin-bottom: 10px;
+    float: left;
+    display: inline-block;
+    padding: 10px 20px;
+    color: orange;
+    text-decoration: none;
+    font-size: 19px;
+    transition: background-color 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.return-button .text {
+    position: relative;
+    z-index: 2;
+}
+
+.return-button .icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: red;
+    color: white;
+    font-size: 20px;
+    line-height: 1;
+    transition: width 0.3s ease;
+}
+
+.return-button:hover .icon {
+    width: 100%;
+}
+
+.img-festival {
+
+    width: 270px;
+    height: 230px;
+    margin-top: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+
+.button-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.button {
+
+    --offset: 10px;
+    --border-size: 4px;
+    margin-top:20px;
+    display: block;
+    position: relative;
+    padding: 1.5em 3em;
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: #e55743;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+
+
 }

@@ -16,7 +16,7 @@ public class Ticket {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     private Festival festival;
 
-    public Ticket(Integer id, String name, double price, Festival festival) {
+    public Ticket(String name, double price, Festival festival) {
         this.id = id;
         this.name = name;
         this.price = price;
