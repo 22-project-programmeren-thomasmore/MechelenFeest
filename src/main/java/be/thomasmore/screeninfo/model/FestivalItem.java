@@ -42,13 +42,13 @@ public class FestivalItem {
         LocalDate startDate = festival.getStartDate().toLocalDate();
         LocalDate endDate = festival.getEndDate().toLocalDate();
         if(startDate.getYear() != endDate.getYear()){
-            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue()+"-"+startDate.getYear() + " - ";
+            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue()+"-"+startDate.getYear() + " / ";
         }
         else if(startDate.getMonth() != endDate.getMonth()){
-            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue() + " - ";
+            date = startDate.getDayOfMonth()+"-"+ startDate.getMonthValue() + " / ";
         }
         else if(startDate.getDayOfMonth() != endDate.getDayOfMonth()){
-            date = startDate.getDayOfMonth() + " - ";
+            date = startDate.getDayOfMonth() + " / ";
         }
             date += endDate.getDayOfMonth()+"-"+endDate.getMonthValue()+"-"+endDate.getYear();
 
