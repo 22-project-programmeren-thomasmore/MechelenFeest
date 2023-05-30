@@ -29,10 +29,10 @@
             <div class="collapse navbar-collapse fs-3" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-xl-0 ">
                     <li class="nav-item ">
-                        <a class="nav-link active mx-3" aria-current="page" th:href="|@{/festivallijst(lang = #{lang.source})}|"><span class="navtext1" th:text="#{header.event}">EventLijst</span></a>
+                        <a class="nav-link active mx-2" aria-current="page" th:href="|@{/festivallijst(lang = #{lang.source})}|"><span class="navtext1" th:text="#{header.event}">EventLijst</span></a>
                     </li>
                     <li class="nav-item dropdown ">
-                        <a class="nav-link dropdown-toggle navtext mx-3" href="#" role="button"
+                        <a class="nav-link dropdown-toggle navtext mx-2" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false" th:text="#{header.taal}">
                             Language
                         </a>
@@ -52,16 +52,16 @@
                         </ul>
 
                     <li class="nav-item">
-                        <a class="nav-link text-navtext navtext mx-3" href="/info">Info</a>
+                        <a class="nav-link text-navtext navtext mx-2" href="/info">Info</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link text-navtext navtext mx-3" href="/contact" th:text="#{header.contact}">Contact</a>
+                        <a class="nav-link text-navtext navtext mx-2" href="/contact" th:text="#{header.contact}">Contact</a>
                     </li>
 
 
                     <li class="nav-item dropdown" sec:authorize="hasAuthority('ROLE_ADMIN')">
-                        <a class="nav-link dropdown-toggle navtext mx-3" href="#" role="button"
+                        <a class="nav-link dropdown-toggle navtext mx-2" href="#" role="button"
                            data-bs-toggle="dropdown" aria-expanded="false">
                             Admin
                         </a>
