@@ -41,6 +41,16 @@
                 <label for="endDate" class="form-label">EndDate: </label>
                 <input type="date" id="endDate" class="form-control mb-2" th:field="*{festival.endDate}" min="2023-01-01">
             </div>
+            <div class="oneinput row">
+                <div class="oneinput col-6">
+                    <label for="lat" class="form-label">Map Latitude: </label>
+                    <input type="number" id="lat" step="0.000001" class="form-control mb-2" th:field="*{festival.mapLat}">
+                </div>
+                <div class="oneinput col-6">
+                    <label for="long" class="form-label">Map Longitude: </label>
+                    <input type="number" id="long" step="0.000001"   class="form-control mb-2" th:field="*{festival.mapLng}">
+                </div>
+            </div>
             <div class="oneinput">
                 <label for="maxCapacity" class="form-label">Capacity: </label>
                 <input type="number" id="maxCapacity" class="form-control mb-2" th:field="*{festival.maxCapacity}">
